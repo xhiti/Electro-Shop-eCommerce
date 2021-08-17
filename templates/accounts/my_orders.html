@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-categogy">
+            <div class="container">
+                <div class="ps-categogy__content">
+                    <div class="row row-reverse">
+                        <div class="col-12 col-md-9">
+                            <table class="table ps-table ps-table--product">
+                                <thead>
+                                    <tr>
+                                        <th class="ps-product__thumbnail">Order #</th>
+                                        <th class="ps-product__name">Billing Name</th>
+                                        <th class="ps-product__meta">Phone</th>
+                                        <th class="ps-product__track_order">Order Total</th>
+                                        <th class="ps-product__remove">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td class="ps-product__name"><a href="{% url 'order_detail' order.order_number %}">{{ order.order_number }}</a></td>
+                                        <td class="ps-product__name">{{ order.full_name }}</td>
+                                        <td class="ps-product__name">{{ order.phone }}</td>
+                                        <td class="ps-product__name">${{ order.order_total }}</td>
+                                        <td class="ps-product__name">{{ order.created_at }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="ps-widget ps-widget--product">
+                                <ul class="ps-breadcrumb">
+                                    <li class="ps-breadcrumb__item"><a href="{% url 'index' %}">Home</a></li>
+                                    <li class="ps-breadcrumb__item"><a href="{% url 'store' %}">My Orders</a></li>
+                                </ul>
+                                <h1 class="ps-categogy__name">My Orders</h1>
+                                <div class="ps-widget__block" style="padding: 0!important;">
+                                    <div class="ps-widget__content ps-widget__category">
+                                        <ul class="menu--mobile">
+                                            <h3 class="ps-dashboard-menu" style="color:#FBB102;">My Dashboard Menu</h3><br>
+                                            <li><a href="{% url 'dashboard' %}">Dashboard</a><span class="sub-toggle"></span></li>
+                                            <li><a href="{% url 'my_orders' %}">My Orders</a><span class="sub-toggle"></span></li>
+                                            <li><a href="{% url 'edit_profile' %}">Edit Profile</a><span class="sub-toggle"></span></li>
+                                            <li><a href="{% url 'change_password' %}">Change Password</a><span class="sub-toggle"></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="before-footer" style="height: 50px"></div>
+
+        {% include 'includes/footer.html' %}
+
+    </div>
+
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+
+</body>
+</html>

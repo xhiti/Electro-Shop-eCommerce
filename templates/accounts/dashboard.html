@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-categogy">
+            <div class="container">
+                <div class="ps-categogy__content">
+                    <div class="row row-reverse">
+                        <div class="col-12 col-md-9">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                <table class="table ps-table ps-table--product">
+                                    <tbody>
+                                        <tr>
+                                            <td class="ps-product__name" style="font-size: 24px; font-weight: bold">Total Orders:</td>
+                                            <td class="ps-product__meta" style="font-size: 24px; font-weight: bold; color: #FBB102">{{ orders_count }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="ps-product__track_order" style="text-align: center"><a href="{% url 'my_orders' %}" class="ps-btn ps-btn--primary">View Orders</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <table class="table ps-table ps-table--product">
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="3" class="ps-product__name">
+                                                <div class="profile-img">
+                                                    <img src="{{ user_profile.profile_picture.url }} " />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-product__thumbnail">
+                                                <p style="color: #103178">Email:</p>
+                                            </td>
+                                            <td class="ps-product__name">
+                                                <p style="color: #103178">{{ user.email }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p style="color: #103178">Phone:</p>
+                                            </td>
+                                            <td>
+                                                <p style="color: #103178">{{ user.phone_number }}</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="ps-widget ps-widget--product">
+                                <ul class="ps-breadcrumb">
+                                    <li class="ps-breadcrumb__item"><a href="{% url 'index' %}">Home</a></li>
+                                    <li class="ps-breadcrumb__item"><a href="{% url 'store' %}">Dashboard</a></li>
+                                </ul>
+                                <h1 class="ps-categogy__name">Dashboard</h1>
+                                <div class="ps-widget__block" style="padding: 0!important;">
+                                    <div class="ps-widget__content ps-widget__category">
+                                        <ul class="menu--mobile">
+                                            <h3 class="ps-dashboard-menu" style="color:#FBB102;">My Dashboard Menu</h3><br>
+                                            <li><a href="{% url 'dashboard' %}">Dashboard</a><span class="sub-toggle"></span></li>
+                                            <li><a href="{% url 'my_orders' %}">My Orders</a><span class="sub-toggle"></span></li>
+                                            <li><a href="{% url 'edit_profile' %}">Edit Profile</a><span class="sub-toggle"></span></li>
+                                            <li><a href="{% url 'change_password' %}">Change Password</a><span class="sub-toggle"></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="before-footer" style="height: 50px"></div>
+
+        {% include 'includes/footer.html' %}
+
+    </div>
+
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+
+</body>
+</html>

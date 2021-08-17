@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-shopping">
+            <div class="container">
+                <ul class="ps-breadcrumb">
+                    <li class="ps-breadcrumb__item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="ps-breadcrumb__item active" aria-current="page">Order Detail</li>
+                </ul>
+                <div class="ps-shopping__content">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-2"></div>
+                        <div class="col-12 col-md-12 col-lg-8">
+                            <div class="ps-shopping__table" style="background-color: #f5f5f4">
+                                <div class="ps-shopping__box">
+                                    <div class="ps-shopping__row">
+                                        <div class="ps-shopping__label"><img src="{% static 'img/electroshop_logo.png' %}" width="40%" height="100%"><span style="font-weight: lighter"></span></div>
+                                        <div class="ps-shopping__price"><b>Invoiced To:</b></div>
+                                    </div>
+                                    <br>
+                                    <div class="ps-shopping__row">
+                                        <div class="ps-shopping__label"><b>Full Name:</b><span style="font-weight: lighter"></span></div>
+                                        <div class="ps-shopping__price"> <span style="font-weight: lighter">{{ order.full_name }} </span> </div>
+                                    </div>
+                                    <div class="ps-shopping__row">
+                                        <div class="ps-shopping__label"><b>Full Address:</b> <span style="font-weight: lighter"></span></div>
+                                        <div class="ps-shopping__price"> <span style="font-weight: lighter">{{ order.full_address }} </span> </div>
+                                    </div>
+                                    <div class="ps-shopping__row">
+                                        <div class="ps-shopping__label"><b>Country:</b></div>
+                                        <div class="ps-shopping__price"> <span style="font-weight: lighter">{{ order.country }} </span></div>
+                                    </div>
+                                    <br>
+                                    <div class="ps-shopping__row">
+                                        <div class="ps-shopping__label"><b>Order: </b><span style="font-weight: lighter">{{ order.order_number }}</span></div>
+                                    </div>
+                                    <div class="ps-shopping__row">
+                                        <div class="ps-shopping__label"><b>Transaction ID: </b><span style="font-weight: lighter">{{ order.payment.payment_id }}</span></div>
+                                    </div>
+                                    <div class="ps-shopping__row">
+                                        <div class="ps-shopping__label"><b>Order Date: </b><span style="font-weight: lighter">{{ order.created_at }}</span></div>
+                                    </div>
+                                    <div class="ps-shopping__row">
+                                        <div class="ps-shopping__label"><b>Status: </b><span style="font-weight: lighter">{{ order.payment.status }}</span></div>
+                                    </div>
+                                    <br>
+                                    <div class="ps-shopping__table">
+                                        <table class="table ps-table ps-table--product">
+                                            <thead>
+                                                <tr>
+                                                    <th class="ps-product__name" style="background-color: #f5f5f4!important; border-bottom: 1px solid #FD8D27">Product</th>
+                                                    <th class="ps-product__meta" style="text-align: center; background-color: #f5f5f4!important; border-bottom: 1px solid #FD8D27">Quantity</th>
+                                                    <th class="ps-product__subtotal" style="text-align: right; background-color: #f5f5f4!important; border-bottom: 1px solid #FD8D27">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for item in order_detail %}
+                                                <tr>
+                                                    <td class="ps-product__name">
+                                                        <a href="#">{{ item.product.product_name }}</a>
+                                                    </td>
+                                                    <td class="ps-product__quantity" style="text-align: center">
+                                                        <span>x{{ item.quantity }}</span>
+                                                    </td>
+                                                    <td style="text-align: right">${{ item.product_price }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                                <tr>
+                                                    <td colspan="2" class="ps-product__name" style="text-align: right"><b>Total</b></td>
+                                                    <td class="ps-product__subtotal" style="text-align: right"><b>${{ sub_total }}</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" class="ps-product__name" style="text-align: right"><b>Tax</b></td>
+                                                    <td class="ps-product__subtotal" style="text-align: right"><b>${{ order.tax }}</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" class="ps-product__name" style="text-align: right"><b>Grand Total</b></td>
+                                                    <td class="ps-product__subtotal" style="text-align: right"><b>${{ order.order_total }}</b></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'includes/footer.html' %}
+
+    </div>
+
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+
+</body>
+</html>

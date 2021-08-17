@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-shopping">
+            <div class="container">
+                <ul class="ps-breadcrumb">
+                    <li class="ps-breadcrumb__item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="ps-breadcrumb__item active" aria-current="page">Shopping cart</li>
+                </ul>
+                <h3 class="ps-shopping__title">Shopping cart<sup>({{ cart_items_count }})</sup></h3>
+                <div class="ps-shopping__content">
+                    <div class="row">
+                        <div class="col-12 col-md-7 col-lg-9">
+                            <div class="ps-shopping__table">
+
+                                {% if not cart_items %}
+                                    <div class="text-center">
+                                        <h3 style="color: #103178">Your shopping cart is empty!</h3><br>
+                                        <div class="ps-shopping__checkout">
+                                            <a class="ps-btn ps-btn--warning" href="{% url 'store' %}" style="width: 30%">Continue Shopping</a>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <table class="table ps-table ps-table--product">
+                                        <thead>
+                                            <tr>
+                                                <th class="ps-product__thumbnail"></th>
+                                                <th class="ps-product__name">Product name</th>
+                                                <th class="ps-product__meta">Unit price</th>
+                                                <th class="ps-product__quantity">Quantity</th>
+                                                <th class="ps-product__subtotal">Subtotal</th>
+                                                <th class="ps-product__remove"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            {% for cart_item in cart_items %}
+                                            <tr>
+                                                <td class="ps-product__thumbnail">
+                                                    <a class="ps-product__image" href="{{ cart_item.product.get_url }}">
+                                                        <figure><img src="{{ cart_item.product.image.url }}" alt></figure>
+                                                    </a>
+                                                </td>
+                                                <td class="ps-product__name">
+                                                    <a href="{{ cart_item.product.get_url }}">{{ cart_item.product.product_name }}</a>
+                                                    <p>
+                                                        {% if cart_item.variations.all %}
+                                                            {% for item in cart_item.variations.all %}
+                                                                {{ item.variation_category | capfirst}} : {{ item.variation_value | capfirst}}<br>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </p>
+                                                </td>
+                                                <td class="ps-product__meta"> <span class="ps-product__price sale">${{ cart_item.product.price }}</span><span class="ps-product__del">${{ cart_item.product.price }}</span>
+                                                </td>
+                                                <td class="ps-product__quantity">
+                                                    <div class="def-number-input number-input safari_only">
+                                                        <button class="minus"><a href="{% url 'remove_cart' cart_item.product.id %}" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="fa fa-minus"></i></a></button>
+                                                        <input class="quantity" min="0" name="quantity" value="{{ cart_item.quantity }}" type="number">
+                                                        <button class="plus"><a href="{% url 'add_cart' cart_item.product.id %}" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="fa fa-plus"></i></a></button>
+                                                    </div>
+                                                </td>
+                                                <td class="ps-product__subtotal">${{ cart_item.sub_total }}</td>
+                                                <td class="ps-product__remove"><a href="{% url 'remove_cart_item' cart_item.product.id %}" class="ps-btn ps-btn--warning" style="color: darkred">Remove</a></td>
+                                            </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-3">
+                            <div class="ps-shopping__label">Cart totals</div>
+                            <div class="ps-shopping__box">
+                                <div class="ps-shopping__row">
+                                    <div class="ps-shopping__label">Subtotal</div>
+                                    <div class="ps-shopping__price">${{ total }}</div>
+                                </div>
+                                <div class="ps-shopping__row">
+                                    <div class="ps-shopping__label">Shipping</div>
+                                    <div class="ps-shopping__price">${{ tax }}</div>
+                                </div>
+                                <div class="ps-shopping__row">
+                                    <div class="ps-shopping__label">Grand Total</div>
+                                    <div class="ps-shopping__price">${{ grand_total }}</div>
+                                </div>
+                                <div class="ps-shopping__checkout"><a class="ps-btn ps-btn--warning" href="{% url 'checkout' %}">Proceed to checkout</a><a class="ps-shopping__link" href="{% url 'store' %}">Continue To Shopping</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="ps-section--latest" style="padding-top: 50px">
+                        <div class="container">
+                            <h3 class="ps-section__title">You may be interested in…</h3>
+                            <div class="ps-section__carousel">
+                                <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="5" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+
+                                    {% for product in products %}
+                                    <div class="ps-section__product">
+                                        <div class="ps-product ps-product--standard">
+                                            <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ product.get_url }}">
+                                                    <figure><img src="{{ product.image.url }}" alt="alt" />
+                                                    </figure>
+                                                </a>
+                                                <div class="ps-product__actions">
+                                                    <div class="ps-product__item" data-placement="left" title="Quick view"><a href="{{ product.get_url }}"><i class="fa fa-search"></i></a></div>
+                                                    <div class="ps-product__item" data-placement="left" title="Add to cart"><a href="{% url 'add_cart' product.id %}" ><i class="fa fa-shopping-basket"></i></a></div>
+                                                </div>
+                                                <div class="ps-product__badge">
+                                                {% if product.stock > 0 %}
+                                                    <div class="ps-badge ps-badge--sold" style="background-color: darkgreen">Available</div>
+                                                {% else %}
+                                                    <div class="ps-badge ps-badge--sold" style="background-color: darkred">Out of Stock</div>
+                                                {% endif %}
+                                            </div>
+                                            </div>
+                                            <div class="ps-product__content">
+                                                <h5 class="ps-product__title"><a href="{{ product.get_url }}">{{ product.product_name }}</a></h5>
+                                                <div class="ps-product__meta"><span class="ps-product__price sale">${{ product.price }}</span><span class="ps-product__del">${{ product.price }}</span>
+                                                </div>
+                                                <div class="ps-product__actions ps-product__group-mobile">
+                                                    <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning" href="{% url 'add_cart' product.id %}">Add to cart</a></div>
+                                                    <div class="ps-product__item cart" data-placement="left" title="Add to cart"><a href="{% url 'add_cart' product.id %}"><i class="fa fa-shopping-basket"></i></a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        {% include 'includes/footer.html' %}
+
+    </div>
+
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-checkout">
+            <div class="container">
+                <div class="ps-checkout__content">
+                    <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row row-reverse">
+                            <div class="col-12 col-md-3">
+                                <div class="ps-widget ps-widget--product">
+                                    <ul class="ps-breadcrumb">
+                                        <li class="ps-breadcrumb__item"><a href="{% url 'index' %}">Home</a></li>
+                                        <li class="ps-breadcrumb__item"><a href="{% url 'store' %}">Edit Profile</a></li>
+                                    </ul>
+                                    <h1 class="ps-categogy__name" style="color: #103178">My Profile</h1>
+                                    <div class="ps-widget__block" style="padding: 0!important;">
+                                        <div class="ps-widget__content ps-widget__category">
+                                            <ul class="menu--mobile">
+                                                <h3 class="ps-dashboard-menu" style="color:#FBB102;">My Dashboard Menu</h3><br>
+                                                <li><a href="{% url 'dashboard' %}">Dashboard</a><span class="sub-toggle"></span></li>
+                                                <li><a href="{% url 'my_orders' %}">My Orders</a><span class="sub-toggle"></span></li>
+                                                <li><a href="{% url 'edit_profile' %}">Edit Profile</a><span class="sub-toggle"></span></li>
+                                                <li><a href="{% url 'change_password' %}">Change Password</a><span class="sub-toggle"></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <div class="ps-checkout__form">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                            <h3 class="ps-checkout__heading">Edit Profile</h3>
+                                        </div>
+                                        <div class="col-12 col-lg-6" style="text-align: right">
+                                            <div class="profile-img" style="margin-left: 90%">
+                                                <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        {% include 'includes/alerts.html' %}
+                                        <div class="col-12 col-md-6">
+                                            <div class="ps-checkout__group">
+                                                <label class="ps-checkout__label">First name *</label>
+                                                {{ user_form.first_name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="ps-checkout__group">
+                                                <label class="ps-checkout__label">Last name *</label>
+                                                {{ user_form.last_name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="ps-checkout__group">
+                                                <label class="ps-checkout__label">Street address *</label>
+                                                {{ profile_form.address_line_1 }}
+                                                <br>
+                                                {{ profile_form.address_line_2 }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="ps-checkout__group">
+                                                <label class="ps-checkout__label">Country *</label>
+                                                {{ profile_form.country }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="ps-checkout__group">
+                                                <label class="ps-checkout__label">State *</label>
+                                                {{ profile_form.state}}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="ps-checkout__group">
+                                                <label class="ps-checkout__label">City (optional)</label>
+                                                {{ profile_form.city }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="ps-checkout__group">
+                                                <label class="ps-checkout__label">Phone *</label>
+                                                {{ user_form.phone_number }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="ps-checkout__group">
+                                                <input class="ps-btn ps-btn--primary" type="submit" name="submit" value="Save" style="width: 20%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="before-footer" style="height: 50px"></div>
+
+        {% include 'includes/footer.html' %}
+
+    </div>
+
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+
+</body>
+</html>

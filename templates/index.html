@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-home ps-home--1">
+            <section class="ps-section--banner">
+                <div class="ps-section__overlay">
+                    <div class="ps-section__loading"></div>
+                </div>
+                <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="15000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
+                    <div class="ps-banner" style="background:#DAECFA;">
+                        <div class="container container-initial">
+                            <div class="ps-banner__block">
+                                <div class="ps-banner__content">
+                                    <h2 class="ps-banner__title">iPhone 12 Pro 5G <br/>128GB Graphite</h2>
+                                    <div class="ps-banner__desc">Only in this week. Don’t misss!</div>
+                                    <div class="ps-banner__price"> <span>$1422</span>
+                                        <del>$1622</del>
+                                    </div><a class="bg-warning ps-banner__shop" href="{% url 'store' %}">Shop now</a>
+                                    <div class="ps-banner__persen bg-warning ps-center">-12%</div>
+                                </div>
+                                <div class="ps-banner__thumnail"><img class="ps-banner__round" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.apple.com%2Fuk%2Fshop%2Fbuy-iphone%2Fiphone-12-pro%2F6.1-inch-display-128gb-graphite&psig=AOvVaw08a_wovhC1-hqhv-NnqVGt&ust=1629114826228000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLCP2ub7svICFQAAAAAdAAAAABAD" alt="alt" /></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-banner" style="background:#F0F2F5;">
+                        <div class="container container-initial">
+                            <div class="ps-banner__block">
+                                <div class="ps-banner__content">
+                                    <h2 class="ps-banner__title">MacBook Air 13'' <br>M1 mgnd3ze/a gold 256 gb</h2>
+                                    <div class="ps-banner__desc">Do your job easier now!</div>
+                                    <div class="ps-banner__btn-group"></div>
+                                    <a class="bg-warning ps-banner__shop" href="{% url 'store' %}">Shop now</a>
+                                    <div class="ps-banner__persen bg-yellow ps-top"><small>only</small>$1299</div>
+                                </div>
+                                <div class="ps-banner__thumnail"><img class="ps-banner__round" src="{% static 'img/round5.png' %}" alt="alt" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-banner" style="background:#FFCC00;">
+                        <div class="container container-initial">
+                            <div class="ps-banner__block">
+                                <div class="ps-banner__content">
+                                    <h2 class="ps-banner__title">TV SAMSUNG QLED <br>QE82Q800TATXXH</h2>
+                                    <div class="ps-banner__btn-group"></div>
+                                    <a class="bg-white ps-banner__shop" href="{% url 'store' %}">Shop now</a>
+                                    <div class="ps-banner__persen bg-primary">-25%</div>
+                                </div>
+                                <div class="ps-banner__thumnail"><img class="ps-banner__round" src="{% static 'img/round2.png' %}" alt="alt" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="ps-home__content">
+                <div class="container">
+                    <section class="ps-section--category">
+                        <h3 class="ps-section__title">Check out the most popular categories</h3>
+                        <div class="ps-category--block">
+
+                            {% for category in links %}
+                            <div class="ps-category__thumbnail"> <a class="ps-category__image" href="{{ category.get_url }}"><img src="{{ category.category_image.url }}" width="200px" height="120px"></a>
+                                <div class="ps-category__content"><a class="ps-category__name" href="{{ category.get_url }}">{{ category.category_name }}</a><a class="ps-category__more" href="{{ category.get_url }}">More</a></div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </section>
+                </div>
+                <section class="ps-section--latest">
+                    <div class="container">
+                        <h3 class="ps-section__title">Latest products</h3>
+                        <div class="ps-section__carousel">
+                            <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="5" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+
+                                {% for product in products %}
+
+                                <div class="ps-section__product">
+                                    <div class="ps-product ps-product--standard">
+                                        <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ product.get_url }}">
+                                                <figure><img src="{{ product.image.url }}" alt="alt" /><img src="{{ product.image.url }}" alt="alt" />
+                                                </figure>
+                                            </a>
+                                            <div class="ps-product__actions">
+                                                <div class="ps-product__item" data-placement="left" title="Quick view"><a href="{{ product.get_url }}"><i class="fa fa-search"></i></a></div>
+                                                <div class="ps-product__item" data-placement="left" title="Add to cart"><a href="{% url 'add_cart' product.id %}" ><i class="fa fa-shopping-basket"></i></a></div>
+                                            </div>
+                                            <div class="ps-product__badge">
+                                                {% if product.stock > 0 %}
+                                                    <div class="ps-badge ps-badge--sold" style="background-color: darkgreen">Available</div>
+                                                {% else %}
+                                                    <div class="ps-badge ps-badge--sold" style="background-color: darkred">Out of Stock</div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="ps-product__content">
+                                            <h5 class="ps-product__title"><a href="{{ product.get_url }}">{{ product.product_name }}</a></h5>
+                                            <div class="ps-product__meta"><span class="ps-product__price sale">{{ product.price }}$</span><span class="ps-product__del">{{ product.price }}$</span>
+                                            </div>
+                                            <div class="ps-product__desc">
+                                                <ul class="ps-product__list">
+                                                    <li>{{ product.product_description }}</li>
+                                                </ul>
+                                            </div>
+                                            <div class="ps-product__actions ps-product__group-mobile">
+                                                <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning" href="{% url 'add_cart' product.id %}">Add to cart</a></div>
+                                                <div class="ps-product__item cart" data-placement="left" title="Add to cart"><a href="{% url 'add_cart' product.id %}"><i class="fa fa-shopping-basket"></i></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        {% include 'includes/footer.html' %}
+
+    </div>
+
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+
+</body>
+
+</html>

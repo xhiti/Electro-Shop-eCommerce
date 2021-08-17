@@ -1,0 +1,40 @@
+{% comment %}
+<!DOCTYPE html>
+<html lang="en">
+{% include 'includes/head.html' %}
+<body>
+{% endcomment %}
+        {% autoescape off %}
+        Hi {{ user.first_name }} !
+
+        Please click the link below to confirm the registration!
+        http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+        If you think it's not you please ignore your email!
+        {% endautoescape %}
+
+        {% comment %}
+        {% load static %}
+        <div class="col-12 col-md-6">
+            <div class="ps-form--review" style="padding: 20px; border: 3px solid #FD8D27 !important">
+                <label class="ps-form__label">Hi {{ user.first_name }} !</label>
+                <label class="ps-form__label">Please click the link below to confirm the registration <br>
+                    <span style="color: #FBB102; font-weight: bold">
+                        <a href="http://{{ domain }}{% url 'activate' uidb=uid token=token %}">http://{{ domain }}{% url 'activate' uidb=uid token=token %}</a>
+                    </span>
+                </label>
+                <br>
+                <label class="ps-form__label">If you think it's not you please ignore your email!</label>
+                <div class="ps-logo" style="padding-top: 50px; padding-bottom: 50px">
+                    <a href="{% url 'index' %}">
+                        <img src="{% static 'img/electroshop_logo.png' %}" alt>
+                    </a>
+                </div>
+                <label class="ps-form__label">Need help? Contact us by email <span style="color: #FBB102; font-weight: bold">info@electroshop.com</span></label>
+            </div>
+        </div>
+
+    {% include 'includes/scripts.html' %}
+</body>
+</html>
+{% endcomment %}

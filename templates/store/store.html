@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-categogy">
+            <div class="container">
+                <ul class="ps-breadcrumb">
+                    <li class="ps-breadcrumb__item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="ps-breadcrumb__item"><a href="{% url 'store' %}">Shop</a></li>
+                </ul>
+                {% if 'search' in request.path %}
+                    <h1 class="ps-categogy__name">Search<sup>({{ search_products_count }})</sup></h1>
+                {% else %}
+                    <h1 class="ps-categogy__name">Shop<sup>({{ product_count }})</sup></h1>
+                {% endif %}
+                <div class="ps-categogy__content">
+                    <div class="row row-reverse">
+                        <div class="col-12 col-md-9">
+                            <div class="ps-categogy__wrapper">
+                                <div class="ps-categogy__type"> <a class="active" href="{% url 'store' %}"><img src="{% static 'img/icon/bars.svg' %}" alt></a><a href="{% url 'store' %}"><img src="{% static 'img/icon/gird2.svg' %}" alt></a><a href="{% url 'store' %}"><img src="{% static 'img/icon/gird3.svg' %}" alt></a><a href="{% url 'store' %}"><img src="{% static 'img/icon/gird4.svg' %}" alt></a></div>
+                                {% comment %}<div class="ps-categogy__onsale">
+                                    <form>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="onSaleProduct">
+                                            <label class="custom-control-label" for="onSaleProduct">Show only products on sale</label>
+                                        </div>
+                                    </form>
+                                </div>{% endcomment %}
+                                <div class="ps-categogy__sort">
+                                    <form><span>Sort by</span>
+                                        <select class="form-select">
+                                            <option selected>Latest</option>
+                                            <option value="Popularity">Popularity</option>
+                                            <option value="Average rating">Average rating</option>
+                                            <option value="Latest">Latest</option>
+                                            <option value="Price: low to high">Price: low to high</option>
+                                            <option value="Price: high to low">Price: high to low</option>
+                                        </select>
+                                    </form>
+                                </div>
+                                <div class="ps-categogy__show">
+                                    <form><span>Show</span>
+                                        <select class="form-select">
+                                            <option selected>12</option>
+                                            <option value="24">24</option>
+                                            <option value="36">36</option>
+                                            <option value="48">48</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="ps-categogy--list">
+
+                            {% if products %}
+                                {% for product in products %}
+                                <div class="ps-product ps-product--list">
+                                    <div class="ps-product__content">
+                                        <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ product.get_url }}">
+                                                <figure><img src="{{ product.image.url }}" alt="alt" />
+                                                </figure>
+                                            </a>
+                                            <div class="ps-product__actions">
+                                                <div class="ps-product__item" data-placement="left" title="Quick view"><a href="{{ product.get_url }}"><i class="fa fa-search"></i></a></div>
+                                            </div>
+                                            <div class="ps-product__badge">
+                                                {% if product.stock > 0 %}
+                                                    <div class="ps-badge ps-badge--sold" style="background-color: darkgreen">Available</div>
+                                                {% else %}
+                                                    <div class="ps-badge ps-badge--sold" style="background-color: darkred">Out of Stock</div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="ps-product__info"><a class="ps-product__branch" href="{% url 'index' %}">ElectroShop</a>
+                                            <h5 class="ps-product__title"><a href="{{ product.get_url }}">{{ product.product_name }}</a></h5>
+                                            {% comment %}<div class="ps-product__rating">
+                                                <select class="ps-rating" data-read-only="true">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5" selected="selected">5</option>
+                                                </select><span class="ps-product__review">(7 Reviews)</span>
+                                            </div>{% endcomment %}
+                                            <div class="ps-product__desc">
+                                                <ul class="ps-product__list">
+                                                    <li>{{ product.product_description }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ps-product__footer">
+                                        <div class="ps-product__meta" style="text-align: center"><span class="ps-product__price sale">{{ product.price }}$</span><span class="ps-product__del">{{ product.price }}$</span></div>
+                                        {% if product.stock <= 0 %}
+                                            <div style="padding-top: 30px; text-align: center">
+                                                <div class="ps-badge ps-badge--sale" style="background-color: darkred">Out of Stock</div>
+                                            </div>
+                                        {% else %}
+                                            <div class="ps-product__quantity" style="text-align: center; padding-top: 30px">
+                                                <a class="ps-btn ps-btn--warning" href="{% url 'add_cart' product.id %}">Add to cart</a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <h3 style="text-align: center; color: #103178">No products found! Please try another keyword!</h3>
+                            {% endif %}
+                            </div>
+                            <div class="ps-pagination">
+                                {% if products.has_other_pages %}
+                                <ul class="pagination">
+                                    {% if products.has_previous %}
+                                        <li><a href="?page={{products.previous_page_number}}"><i class="fa fa-angle-double-left"></i></a></li>
+                                    {% else %}
+                                        <li class="disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                    {% endif %}
+                                    {% for i in products.paginator.page_range  %}
+                                        {% if products.number == i %}
+                                            <li class="active"><a href="#">{{ i }}</a></li>
+                                        {% else %}
+                                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if products.has_next %}
+                                        <li><a href="?page={{products.next_page_number}}"><i class="fa fa-angle-double-right"></i></a></li>
+                                    {% else %}
+                                        <li class="disabled"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                    {% endif %}
+
+                                </ul>
+                                {% endif %}
+                            </div>
+                            <div class="ps-delivery">
+                                <div class="ps-delivery__content">
+                                    <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure delivery </strong>without contacting the courier</span></div><a class="ps-delivery__more" href="#">More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="ps-widget ps-widget--product">
+                                <div class="ps-widget__block">
+                                    <h4 class="ps-widget__title">Categories</h4><a class="ps-block-control" href="#"><i class="fa fa-angle-down"></i></a>
+                                    <div class="ps-widget__content ps-widget__category">
+                                        <ul class="menu--mobile">
+
+                                            {% for category in links %}
+                                            <li><a href="{{ category.get_url }}">{{ category.category_name }}</a><span class="sub-toggle"></span></li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="ps-widget__block">
+                                    <h4 class="ps-widget__title">By price</h4><a class="ps-block-control" href="#"><i class="fa fa-angle-down"></i></a>
+                                    <div class="ps-widget__content">
+                                        <div class="ps-widget__price">
+                                            <div id="slide-price"></div>
+                                        </div>
+                                        <div class="ps-widget__input"><span class="ps-price" id="slide-price-min">$0</span><span class="bridge">-</span><span class="ps-price" id="slide-price-max">$820</span></div>
+                                        <button class="ps-widget__filter">Filter</button>
+                                    </div>
+                                </div>
+                                <div class="ps-widget__block">
+                                    <h4 class="ps-widget__title">Color</h4><a class="ps-block-control" href="#"><i class="fa fa-angle-down"></i></a>
+                                    <div class="ps-widget__content">
+                                        <div class="ps-widget__color">
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="colorGray">
+                                                <label class="custom-control-label" for="colorGray" style="--bg-color: #5b6c8f"></label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="colorGreen">
+                                                <label class="custom-control-label" for="colorGreen" style="--bg-color: #12a05c"></label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="colorRed">
+                                                <label class="custom-control-label" for="colorRed" style="--bg-color: #f00000"></label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="colorYellow">
+                                                <label class="custom-control-label" for="colorYellow" style="--bg-color: #ff9923"></label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="colorBlack">
+                                                <label class="custom-control-label" for="colorBlack" style="--bg-color: #313330"></label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="colorBlue">
+                                                <label class="custom-control-label" for="colorBlue" style="--bg-color: #58c8ec"></label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="colorNavy">
+                                                <label class="custom-control-label" for="colorNavy" style="--bg-color: #103178"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ps-widget__promo"><img src="{% static 'img/banner-sidebar1.jpg' %}" alt></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'includes/footer.html' %}
+    </div>
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+</body>
+</html>

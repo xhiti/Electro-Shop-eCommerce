@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-page--notfound">
+            <div class="container">
+                <ul class="ps-breadcrumb">
+                    <li class="ps-breadcrumb__item"><a href="index.html">Home</a></li>
+                    <li class="ps-breadcrumb__item active" aria-current="page">404</li>
+                </ul>
+                <div class="ps-page__content" style="padding-bottom: 50px">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-3"></div>
+                        <div class="col-12 col-md-12 col-lg-6" style="text-align: center">
+                            <h1 class="ps-page__name">404</h1>
+                            <h5>This page has been probably moved somewhere...</h5>
+                            <p>Please back to homepage or check our offer</p>
+                            <div><a class="ps-btn ps-btn--primary" href="{% url 'index' %}">Back to homepage</a></div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'includes/footer.html' %}
+
+    </div>
+
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+
+</body>
+
+</html>

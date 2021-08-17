@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'includes/head.html' %}
+
+<body>
+    <div class="ps-page">
+
+        {% include 'includes/header.html' %}
+        {% load static %}
+
+        <div class="ps-account">
+            <div class="container" style="width: 100%">
+                <div class="row" style="text-align: center">
+                    <div class="col-12 col-md-3"></div>
+                    {% if request.GET.command == 'verification' %}
+                        <div class="col-12 col-md-6">
+                            <div class="ps-form--review" style="padding: 20px; border: 3px solid #FD8D27 !important">
+                                <label class="ps-form__label">We have sent you a verification email!</label>
+                                <label class="ps-form__label">Check your email <span style="color: #FBB102; font-weight: bold">{{ request.GET.email }}</span> to verify the account!</label>
+                                <br>
+                                <label class="ps-form__label">Already verified? <a href="{% url 'login' %}" style="font-weight: bold">Login</a></label><br>
+                                <label class="ps-form__label">Thank you!</label>
+                                <div class="ps-logo" style="padding-top: 50px; padding-bottom: 50px">
+                                    <a href="{% url 'index' %}">
+                                        <img src="{% static 'img/electroshop_logo.png' %}" alt>
+                                    </a>
+                                </div>
+                                <label class="ps-form__label">Need help? Contact us by email <span style="color: #FBB102; font-weight: bold">info@electroshop.com</span></label>
+                            </div>
+                        </div>
+                    {% else %}
+                    <div class="col-12 col-md-6">
+                        <form action="{% url 'login' %}" method="POST" style="padding: 20px; border: 3px solid #FD8D27 !important">
+                            {% csrf_token %}
+                            <div class="ps-form--review">
+                                <h2 class="ps-form__title">Login</h2>
+                                <div class="ps-form__group" style="text-align: left!important;">
+                                    <label class="ps-form__label">Username or email address *</label>
+                                    <input class="form-control ps-form__input" type="email" placeholder="Username or email address" name="email">
+                                </div>
+                                <div class="ps-form__group" style="text-align: left!important;">
+                                    <label class="ps-form__label">Password *</label>
+                                    <div class="input-group">
+                                        <input class="form-control ps-form__input" type="password" placeholder="Password" name="password">
+                                        <div class="input-group-append"><a class="fa fa-eye-slash toogle-password" href="javascript: void(0);"></a></div>
+                                    </div>
+                                </div>
+                                <div class="ps-form__submit">
+                                    <button class="ps-btn ps-btn--warning">Log in</button>
+                                    {% comment %}<div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="remember">
+                                        <label class="form-check-label" for="remember">Remember me</label>
+                                    </div>{% endcomment %}
+                                </div>
+                                {% include 'includes/alerts.html' %}
+                                <a class="ps-account__link" href="{% url 'forgotPassword' %}">Forgot password?</a><br>
+                                <p>Don't have an account? <a class="ps-account__link" href="{% url 'register' %}">Create one here!</a></p>
+                            </div>
+                        </form>
+                    </div>
+                    {% endif %}
+                    <div class="col-12 col-md-3"></div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'includes/footer.html' %}
+
+    </div>
+
+    {% include 'includes/extended.html' %}
+    {% include 'includes/scripts.html' %}
+
+</body>
+
+</html>

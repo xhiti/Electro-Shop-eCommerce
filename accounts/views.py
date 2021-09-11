@@ -132,6 +132,9 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
+        profile_picture = 'media/userprofile/1176393.png'
+        user_profile = UserProfile.objects.create(user=user, profile_picture=profile_picture)
+        user_profile.save()
         messages.success(request, 'Your account is activated!')
 
         return redirect('login')

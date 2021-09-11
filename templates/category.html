@@ -13,22 +13,104 @@
             <div class="container">
                 <ul class="ps-breadcrumb">
                     <li class="ps-breadcrumb__item"><a href="index.html">Home</a></li>
-                    <li class="ps-breadcrumb__item active" aria-current="page">404</li>
+                    <li class="ps-breadcrumb__item active" aria-current="page">Categories</li>
                 </ul>
-                <div class="ps-page__content" style="padding-bottom: 50px">
-                    <div class="row">
-                        <div class="col-12 col-md-12 col-lg-3"></div>
-                        <div class="col-12 col-md-12 col-lg-6" style="text-align: center">
-                            <h1 class="ps-page__name">404</h1>
-                            <h5>This page has been probably moved somewhere...</h5>
-                            <p>Please back to homepage or check our offer</p>
-                            <div><a class="ps-btn ps-btn--primary" href="{% url 'index' %}">Back to homepage</a></div>
+                <div class="ps-home__content">
+                <div class="container">
+                    <section class="ps-section--category">
+                        <h3 class="ps-section__title">Check out the most popular categories</h3>
+                        <div class="ps-category--block">
+
+                            {% for category in links %}
+                            <div class="ps-category__thumbnail"> <a class="ps-category__image" href="{{ category.get_url }}"><img src="{{ category.category_image.url }}" width="200px" height="120px"></a>
+                                <div class="ps-category__content"><a class="ps-category__name" href="{{ category.get_url }}">{{ category.category_name }}</a><a class="ps-category__more" href="{{ category.get_url }}">More</a></div>
+                            </div>
+                            {% endfor %}
+
                         </div>
-                        <div class="col-12 col-md-12 col-lg-3"></div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </div>
+        <section class="ps-section--latest">
+            <div class="container">
+                <h3 class="ps-section__title">Latest products</h3>
+                <div class="ps-section__carousel">
+                    <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="5" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+
+                        {% for product in products %}
+
+                        <div class="ps-section__product">
+                            <div class="ps-product ps-product--standard">
+                                <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ product.get_url }}">
+                                        <figure><img src="{{ product.image.url }}" alt="alt" /><img src="{{ product.image.url }}" alt="alt" />
+                                        </figure>
+                                    </a>
+                                    <div class="ps-product__actions">
+                                        <div class="ps-product__item" data-placement="left" title="Quick view"><a href="{{ product.get_url }}"><i class="fa fa-search"></i></a></div>
+                                        <div class="ps-product__item" data-placement="left" title="Add to cart"><a href="{% url 'add_cart' product.id %}" ><i class="fa fa-shopping-basket"></i></a></div>
+                                    </div>
+                                    <div class="ps-product__badge">
+                                        {% if product.stock > 0 %}
+                                            <div class="ps-badge ps-badge--sold" style="background-color: darkgreen">Available</div>
+                                        {% else %}
+                                            <div class="ps-badge ps-badge--sold" style="background-color: darkred">Out of Stock</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="ps-product__content">
+                                    <h5 class="ps-product__title"><a href="{{ product.get_url }}">{{ product.product_name }}</a></h5>
+                                    <div class="ps-product__meta"><span class="ps-product__price sale">{{ product.price }}$</span><span class="ps-product__del">{{ product.price }}$</span>
+                                    </div>
+                                    <div class="ps-product__desc">
+                                        <ul class="ps-product__list">
+                                            <li>{{ product.product_description }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="ps-product__actions ps-product__group-mobile">
+                                        <div class="ps-product__cart"> <a class="ps-btn ps-btn--warning" href="{% url 'add_cart' product.id %}">Add to cart</a></div>
+                                        <div class="ps-product__item cart" data-placement="left" title="Add to cart"><a href="{% url 'add_cart' product.id %}"><i class="fa fa-shopping-basket"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="ps-section--reviews" style="padding-top: 50px; padding-bottom: 50px">
+            <h3 class="ps-section__title"> <img src="{% static 'img/quote-icon.png' %}" alt="">Latest reviews</h3>
+            <div class="ps-section__content">
+                <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true" data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="3" data-owl-item-lg="5" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage" style="transform: translate3d(-3907px, 0px, 0px); transition: all 1s ease 0s; width: 6039px;">
+                            {% for rating in ratings %}
+                            <div class="owl-item cloned" style="width: 355px;">
+                                <div class="ps-review">
+                                    <div class="ps-review__text">{{ rating.review }}</div>
+                                    <div class="ps-review__name">{{ rating.user.first_name }} {{ rating.user.last_name }}</div>
+                                    <div class="ps-review__review">
+                                        <div class="br-wrapper br-theme-fontawesome-stars">
+                                            <span style="color: #FBB102!important;">
+                                                <i class="fa fa-star{% if rating.rating == 0.5 %}-half-o{% elif rating.rating < 1 %}-o{% endif %}" aria-hidden="true"></i>
+                                                <i class="fa fa-star{% if rating.rating == 1.5 %}-half-o{% elif rating.rating < 2 %}-o{% endif %}" aria-hidden="true"></i>
+                                                <i class="fa fa-star{% if rating.rating == 2.5 %}-half-o{% elif review.rating < 3 %}-o{% endif %}" aria-hidden="true"></i>
+                                                <i class="fa fa-star{% if rating.rating == 3.5 %}-half-o{% elif rating.rating < 4 %}-o{% endif %}" aria-hidden="true"></i>
+                                                <i class="fa fa-star{% if rating.rating == 4.5 %}-half-o{% elif rating.rating < 5 %}-o{% endif %}" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         {% include 'includes/footer.html' %}
 

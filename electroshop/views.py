@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from store.models import Product
 from category.models import Category
+from store.models import ReviewRating
 
 
 def index(request):
@@ -16,15 +17,31 @@ def index(request):
 
 
 def category(request):
-    return render(request, 'category.html')
+    products = Product.objects.all().filter(is_available=True)
+    categories = Category.objects.all()
+    ratings = ReviewRating.objects.all()
 
+    context = {
+        'products': products,
+        'categories': categories,
+        'ratings': ratings
+    }
 
-def blog(request):
-    return render(request, 'blog.html')
+    return render(request, 'category.html', context)
 
 
 def about(request):
-    return render(request, 'category.html')
+    products = Product.objects.all().filter(is_available=True)
+    categories = Category.objects.all()
+    ratings = ReviewRating.objects.all()
+
+    context = {
+        'products': products,
+        'categories': categories,
+        'ratings': ratings
+    }
+
+    return render(request, 'category.html', context)
 
 
 def contact(request):

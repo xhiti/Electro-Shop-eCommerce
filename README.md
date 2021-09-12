@@ -34,5 +34,5 @@ With that said, we’ll be building a fully custom featured eCommerce applicatio
 - Payment Gateway Integration & Place Order
 - Rating Average & Review Count Calculation
 
-Note: I have used a template that i download from the internet and all the autorities goes to him.
+Note: I have used a template that i download from the internet and all the autorities goes to the template's author.
       I will use it for teaching purposes.

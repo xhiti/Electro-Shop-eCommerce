@@ -133,7 +133,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         profile_picture = 'media/userprofile/1176393.png'
-        user_profile = UserProfile.objects.create(user=user, profile_picture=profile_picture)
+        user_profile = UserProfile.objects.create(user=user)
         user_profile.save()
         messages.success(request, 'Your account is activated!')
 

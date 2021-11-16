@@ -1,5 +1,5 @@
 # Electro-Shop-eCommerce
-### ElectroShop eCommerce Django &amp; SQLite
+### ElectroShop eCommerce Django &amp; PostgreSQL
 
 This project is to develop a fully-featured eCommerce website and redesign any Django-based web applications.
 

@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Responsive Bootstrap4 Dashboard Template">
+		<meta name="author" content="Mexhit Kurti">
+		<link rel="shortcut icon" href="img/electroshop-admin-logo.png">
+		<title>ElectroShop Admin</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="vendor/search-filter/search-filter.css">
+		<link rel="stylesheet" href="vendor/search-filter/custom-search-filter.css">
+		<link rel="stylesheet" href="vendor/bs-select/bs-select.css" />
+		<link rel="stylesheet" href="vendor/daterange/daterange.css">
+		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+	</head>
+	<body>
+		<div class="page-wrapper">
+			<nav class="sidebar-wrapper">
+				<div class="sidebar-tabs">
+					<div class="nav" role="tablist" aria-orientation="vertical">
+						<a href="index.html" class="logo">
+							<img src="img/electroshop-admin-logo.png" alt="ElectroShop Admin">
+						</a>
+						<a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
+							<i class="fa fa-dashboard"></i>
+							<span class="nav-link-text">Dashboards</span>
+						</a>
+						<a class="nav-link" id="product-tab" data-bs-toggle="tab" href="#tab-product" role="tab" aria-controls="tab-product" aria-selected="false">
+							<i class="fa fa-product-hunt"></i>
+							<span class="nav-link-text">Product</span>
+						</a>
+						<a class="nav-link active" id="pages-tab" data-bs-toggle="tab" href="#tab-pages" role="tab" aria-controls="tab-pages" aria-selected="false">
+							<i class="fa fa-area-chart"></i>
+							<span class="nav-link-text">Orders</span>
+						</a>
+						<a class="nav-link" id="components-tab" data-bs-toggle="tab" href="#tab-components" role="tab" aria-controls="tab-components" aria-selected="false">
+							<i class="fa fa-users"></i>
+							<span class="nav-link-text">Customers</span>
+						</a>
+						<a class="nav-link" id="graphs-tab" data-bs-toggle="tab" href="#tab-graphs" role="tab" aria-controls="tab-graphs" aria-selected="false">
+							<i class="fa fa-newspaper-o"></i>
+							<span class="nav-link-text">Blog</span>
+						</a>
+						<a class="nav-link" id="authentication-tab" data-bs-toggle="tab" href="#tab-authentication" role="tab" aria-controls="tab-authentication" aria-selected="false">
+							<i class="fa fa-user-circle-o"></i>
+							<span class="nav-link-text">Authentication</span>
+						</a>
+						<a class="nav-link settings" id="settings-tab" data-bs-toggle="tab" href="#tab-settings" role="tab" aria-controls="tab-authentication" aria-selected="false">
+							<i class="fa fa-cog"></i>
+							<span class="nav-link-text">Settings</span>
+						</a>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane fade" id="tab-home" role="tabpanel" aria-labelledby="home-tab">
+							<div class="tab-pane-header">
+								Dashboards
+							</div>
+							<div class="sidebarMenuScroll">
+								<div class="sidebar-menu">
+									<ul>
+										<li>
+											<a href="index.html">Dashboard</a>
+										</li>
+										<li>
+											<a href="analytics.html">Analytics</a>
+										</li>
+										<li>
+											<a href="sales.html">Sales</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sidebar-actions">
+								<a href="orders.html" class="red">
+									<div class="bg-avatar">12</div>
+									<h5>New Orders</h5>
+								</a>
+								<a href="invoices-list.html" class="blue">
+									<div class="bg-avatar">24</div>
+									<h5>Bills Pending</h5>
+								</a>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tab-product" role="tabpanel" aria-labelledby="product-tab">
+							<div class="tab-pane-header">
+								Product
+							</div>
+							<div class="sidebarMenuScroll">
+								<div class="sidebar-menu">
+									<ul>
+										<li>
+											<a href="products-list.html">Products List</a>
+										</li>
+										<li>
+											<a href="add-product.html">Add Product</a>
+										</li>
+										<li>
+											<a href="categories-list.html">Categories List</a>
+										</li>
+										<li>
+											<a href="add-category.html">Add Category</a>
+										</li>
+										<li>
+											<a href="products-reviews.html">Reviews</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sidebar-actions">
+								<div class="support-tile">
+									<i class="fa fa-headphones"></i> 24/7 Support
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade show active" id="tab-pages" role="tabpanel" aria-labelledby="pages-tab">
+							<div class="tab-pane-header">
+								Orders
+							</div>
+							<div class="sidebarMenuScroll">
+								<div class="sidebar-menu">
+									<ul>
+										<li>
+											<a href="create-invoice.html">Create Invoice</a>
+										</li>
+										<li>
+											<a href="view-invoice.html" class="current-page">View Invoice</a>
+										</li>
+										<li>
+											<a href="orders-list.html">Orders List</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sidebar-actions">
+								<div class="support-tile green">
+									<i class="fa fa-pie-chart"></i> 5GB Free Space
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tab-components" role="tabpanel" aria-labelledby="components-tab">
+							<div class="tab-pane-header">
+								Customers
+							</div>
+							<div class="sidebarMenuScroll">
+								<div class="sidebar-menu">
+									<ul>
+										<li>
+											<a href="customers-list.html">Customer List</a>
+										</li>
+										<li>
+											<a href="add-customer.html">Add Customer</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sidebar-actions">
+								<div class="support-tile yellow">
+									<i class="fa fa-arrow-circle-o-down"></i><a href="#">Download Reports</a>						</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tab-graphs" role="tabpanel" aria-labelledby="graphs-tab">
+							<div class="tab-pane-header">
+								Blog
+							</div>
+							<div class="sidebarMenuScroll">
+								<div class="sidebar-menu">
+									<ul>
+										<li>
+											<a href="posts-list.html">Posts List</a>
+										</li>
+										<li>
+											<a href="add-post.html">Add Post</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sidebar-actions">
+								<div class="support-tile pink">
+									<i class="fa fa-arrow-right"></i> RTL Support
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tab-authentication" role="tabpanel" aria-labelledby="authentication-tab">
+							<div class="tab-pane-header">
+								Authentication
+							</div>
+							<div class="sidebarMenuScroll">
+								<div class="sidebar-menu">
+									<ul>
+										<li>
+											<a href="forgot-password.html">Forgot Password</a>
+										</li>
+										<li>
+											<a href="reset-password.html">Reset Password</a>
+										</li>
+										<li>
+											<a href="maintenance.html">Maintenance</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sidebar-actions">
+								<div class="support-tile blue">
+									<a href="pricing.html" class="btn btn-light m-auto">Upgrade Account</a>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tab-settings" role="tabpanel" aria-labelledby="settings-tab">
+							<div class="tab-pane-header">
+								Settings
+							</div>
+							<div class="sidebarMenuScroll">
+								<div class="sidebar-settings">
+									<div class="accordion" id="settingsAccordion">
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="genInfo">
+												<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#genCollapse" aria-expanded="true" aria-controls="genCollapse">
+													General Info
+												</button>
+											</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<div class="main-container">
+				<div class="page-header">
+					<div class="row gutters">
+						<div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-9">
+							<div class="search-container">
+								<div class="toggle-sidebar" id="toggle-sidebar">
+									<i class="fa fa-bars"></i>
+								</div>
+								<div class="ui fluid category search">
+									<div class="ui icon input">
+										<input class="prompt" type="text" placeholder="Search">
+										<i class="search icon fa fa-search"></i>
+									</div>
+									<div class="results"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-3">
+							<ul class="header-actions">
+								<li class="dropdown">
+									<a href="#" id="taskss" data-toggle="dropdown" aria-haspopup="true">
+										<i class="fa fa-info-circle"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end lrg" aria-labelledby="taskss">
+										<div class="dropdown-menu-header">
+											Tasks (7/10)
+										</div>
+										<div class="customScroll">
+											<ul class="activity">
+												<li class="activity-list">
+													<div class="detail-info">
+														<p class="date">Today</p>
+														<p class="info">Messages accepted with attachments</p>
+													</div>
+												</li>
+												<li class="activity-list danger">
+													<div class="detail-info">
+														<p class="date">Today</p>
+														<p class="info">Send email notifications of subscriptions and deletions to list owner</p>
+													</div>
+												</li>
+												<li class="activity-list success">
+													<div class="detail-info">
+														<p class="date">Yesterday</p>
+														<p class="info">Required change logs activity reports</p>
+													</div>
+												</li>
+												<li class="activity-list warning">
+													<div class="detail-info">
+														<p class="date">2 Days Ago</p>
+														<p class="info">Strategic partnership plan</p>
+													</div>
+												</li>
+												<li class="activity-list">
+													<div class="detail-info">
+														<p class="date">2 days ago</p>
+														<p class="info">Send email notifications of subscriptions and deletions to list owner</p>
+													</div>
+												</li>
+												<li class="activity-list danger">
+													<div class="detail-info">
+														<p class="date">3 days ago</p>
+														<p class="info">Required change logs activity reports</p>
+													</div>
+												</li>
+												<li class="activity-list success">
+													<div class="detail-info">
+														<p class="date">7 days ago</p>
+														<p class="info">Strategic partnership plan</p>
+													</div>
+												</li>
+												<li class="activity-list">
+													<div class="detail-info">
+														<p class="date">2 weeks ago</p>
+														<p class="info">Required change logs activity reports</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li class="dropdown">
+									<a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true">
+										<i class="fa fa-bell"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end lrg" aria-labelledby="notifications">
+										<div class="dropdown-menu-header">
+											Notifications (7)
+										</div>
+										<div class="customScroll">
+											<ul class="header-notifications">
+												<li>
+													<a href="#">
+														<div class="user-img online">
+															<img src="img/user6.png" alt="User">
+														</div>
+														<div class="details">
+															<div class="user-title">Larkyn</div>
+															<div class="noti-details">Check out every table in detail.</div>
+															<div class="noti-date">April 25, 04:00 pm</div>
+														</div>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<div class="user-img busy">
+															<img src="img/user10.png" alt="User">
+														</div>
+														<div class="details">
+															<div class="user-title">Braxten</div>
+															<div class="noti-details">Approved new design.</div>
+															<div class="noti-date">April 10, 12:00 am</div>
+														</div>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<div class="user-img away">
+															<img src="img/user21.png" alt="User">
+														</div>
+														<div class="details">
+															<div class="user-title">Maria</div>
+															<div class="noti-details">Membership has been ended.</div>
+															<div class="noti-date">March 20, 07:30 pm</div>
+														</div>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<div class="user-img busy">
+															<img src="img/user15.png" alt="User">
+														</div>
+														<div class="details">
+															<div class="user-title">Alex</div>
+															<div class="noti-details">Design Review.</div>
+															<div class="noti-date">April 18, 09:30 am</div>
+														</div>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<div class="user-img online">
+															<img src="img/user5.png" alt="User">
+														</div>
+														<div class="details">
+															<div class="user-title">Sunny</div>
+															<div class="noti-details">UI Discussion</div>
+															<div class="noti-date">April 21, 05:00 pm</div>
+														</div>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li class="dropdown">
+									<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+										<span class="avatar">
+											<img src="img/user.svg" alt="User Avatar">
+											<span class="status busy"></span>
+										</span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end md" aria-labelledby="userSettings">
+										<div class="header-profile-actions">
+											<a href="user-profile.html"><i class="fa fa-user"></i>Profile</a>
+											<a href="account-settings.html"><i class="fa fa-cog"></i>Settings</a>
+											<a href="forgot-password.html"><i class="fa fa-sign-out"></i>Logout</a>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="content-wrapper-scroll">
+					<div class="content-wrapper">
+						<div class="row gutters">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+								<div class="card">
+									<div class="card-header-lg">
+										<h4>Create Invoice</h4>
+										<div class="text-end">
+											<a href="create-invoice.html" class="btn btn-primary">Create Invoice</a>
+										</div>
+									</div>
+									<div class="card-body">
+                                        <div class="invoice-container">
+                                            <div class="invoice-header">
+                                                <div class="row justify-content-between">
+                                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                                        <a href="index.html" class="invoice-logo">
+                                                            <img src="img/electroshop-admin-logo.png" alt="ElectroShop Admin Dashboard">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                                                        <address class="text-right">
+                                                            Meow LLC, 2880 St. <br>
+                                                            Rose Pkwy, Suite 700<br>
+                                                            San Francisco, California(CA), 94102
+                                                        </address>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row gutters">
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="invoice-details">
+                                                        <address class="m-0">
+                                                            Alex Maxwell,<br>
+                                                            1691 Oakdale Ave,<br>
+                                                            San Francisco, California(CA), 94124
+                                                        </address>
+                                                        <div class="invoice-num">
+                                                            <div>Invoice - #009</div>
+                                                            <div>January 10th 2020</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row gutters">
+                                                <div class="col-12">
+                                                    
+													<div class="table-responsive">
+														<table class="table table-bordered">
+															<thead>
+																<tr>
+																	<th>Items</th>
+																	<th>Product ID</th>
+																	<th>Hours</th>
+																	<th>Amount (Net)</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>
+																		<h6>Creative Wordpress Template</h6>
+																		<p>Create quality mockups and prototypes and Design mobile-based features.</p>
+																	</td>
+																	<td>
+																		<h6>#651</h6>
+																	</td>
+																	<td>
+																		<h6>40</h6>
+																	</td>
+																	<td>
+																		<h6>$450.00</h6>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<h6>Front-End Development</h6>
+																		<p>Using markup languages like HTML to create user-friendly web pages.</p>
+																	</td>
+																	<td>
+																		<h6>#429</h6>
+																	</td>
+																	<td>
+																		<h6>60</h6>
+																	</td>
+																	<td>
+																		<h6>$550.00</h6>
+																	</td>
+																</tr>
+																<tr>
+																	<td colspan="2">&nbsp;</td>
+																	<td>
+																		<p class="m-0">Subtotal</p>
+																		<p class="m-0">Discount</p>
+																		<p class="m-0">VAT</p>
+																		<h5 class="mt-2 text-danger">Total USD</h5>
+																	</td>
+																	<td>
+																		<p class="m-0">$1000.00</p>
+																		<p class="m-0">$10.00</p>
+																		<p class="m-0">$5.00</p>
+																		<h5 class="mt-2 text-danger">$1015.00</h5>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+                                                </div>
+                                            </div>
+                                            <div class="row gutters">
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="text-start">
+                                                        <button class="btn btn-primary">Download</button>
+                                                        <button class="btn btn-light ms-1">Print</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="app-footer">© ElectroShop Admin 2021</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/modernizr.js"></script>
+		<script src="js/moment.js"></script>
+		<script src="vendor/slimscroll/slimscroll.min.js"></script>
+		<script src="vendor/slimscroll/custom-scrollbar.js"></script>
+		<script src="vendor/search-filter/search-filter.js"></script>
+		<script src="vendor/search-filter/custom-search-filter.js"></script>
+		<script src="vendor/bs-select/bs-select.min.js"></script>
+		<script src="vendor/bs-select/bs-select-custom.js"></script>
+		<script src="vendor/daterange/daterange.js"></script>
+		<script src="vendor/daterange/custom-daterange.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

@@ -47,6 +47,7 @@ class Account(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=200, unique=True)
     phone_number = models.CharField(max_length=50)
+    is_deleted = models.BooleanField(default=False)
 
     # required
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -65,7 +66,7 @@ class Account(AbstractBaseUser):
         return self.email
 
     def full_name(self):
-        return f'{self.first_name}{self.last_name}'
+        return f'{self.first_name} {self.last_name}'
 
     def has_perm(self, permission, obj=None):
         return self.is_admin

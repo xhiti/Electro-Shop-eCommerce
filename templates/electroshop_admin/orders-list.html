@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Bootstrap4 Dashboard Template">
+	<meta name="author" content="Mexhit Kurti">
+	<link rel="shortcut icon" href="img/electroshop-admin-logo.png">
+	<title>ElectroShop Admin</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="vendor/search-filter/search-filter.css">
+	<link rel="stylesheet" href="vendor/search-filter/custom-search-filter.css">
+	<link rel="stylesheet" href="vendor/datatables/dataTables.bs4.css">
+	<link rel="stylesheet" href="vendor/datatables/dataTables.bs4-custom.css">
+	<link href="vendor/datatables/buttons.bs.css" rel="stylesheet">
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+</head>
+<body>
+<div id="loading-wrapper">
+	<div class="spinner-border"></div>
+	Loading...
+</div>
+<div class="page-wrapper">
+	<nav class="sidebar-wrapper">
+		<div class="sidebar-tabs">
+			<div class="nav" role="tablist" aria-orientation="vertical">
+				<a href="index.html" class="logo">
+					<img src="img/electroshop-admin-logo.png" alt="ElectroShop Admin">
+				</a>
+				<a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
+					<i class="fa fa-dashboard"></i>
+					<span class="nav-link-text">Dashboards</span>
+				</a>
+				<a class="nav-link" id="product-tab" data-bs-toggle="tab" href="#tab-product" role="tab" aria-controls="tab-product" aria-selected="false">
+					<i class="fa fa-product-hunt"></i>
+					<span class="nav-link-text">Product</span>
+				</a>
+				<a class="nav-link active" id="pages-tab" data-bs-toggle="tab" href="#tab-pages" role="tab" aria-controls="tab-pages" aria-selected="false">
+					<i class="fa fa-area-chart"></i>
+					<span class="nav-link-text">Orders</span>
+				</a>
+				<a class="nav-link" id="components-tab" data-bs-toggle="tab" href="#tab-components" role="tab" aria-controls="tab-components" aria-selected="false">
+					<i class="fa fa-users"></i>
+					<span class="nav-link-text">Customers</span>
+				</a>
+				<a class="nav-link" id="graphs-tab" data-bs-toggle="tab" href="#tab-graphs" role="tab" aria-controls="tab-graphs" aria-selected="false">
+					<i class="fa fa-newspaper-o"></i>
+					<span class="nav-link-text">Blog</span>
+				</a>
+				<a class="nav-link" id="authentication-tab" data-bs-toggle="tab" href="#tab-authentication" role="tab" aria-controls="tab-authentication" aria-selected="false">
+					<i class="fa fa-user-circle-o"></i>
+					<span class="nav-link-text">Authentication</span>
+				</a>
+				<a class="nav-link settings" id="settings-tab" data-bs-toggle="tab" href="#tab-settings" role="tab" aria-controls="tab-authentication" aria-selected="false">
+					<i class="fa fa-cog"></i>
+					<span class="nav-link-text">Settings</span>
+				</a>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane fade" id="tab-home" role="tabpanel" aria-labelledby="home-tab">
+					<div class="tab-pane-header">
+						Dashboards
+					</div>
+					<div class="sidebarMenuScroll">
+						<div class="sidebar-menu">
+							<ul>
+								<li>
+									<a href="index.html">Dashboard</a>
+								</li>
+								<li>
+									<a href="analytics.html">Analytics</a>
+								</li>
+								<li>
+									<a href="sales.html">Sales</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sidebar-actions">
+						<a href="orders.html" class="red">
+							<div class="bg-avatar">12</div>
+							<h5>New Orders</h5>
+						</a>
+						<a href="invoices-list.html" class="blue">
+							<div class="bg-avatar">24</div>
+							<h5>Bills Pending</h5>
+						</a>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="tab-product" role="tabpanel" aria-labelledby="product-tab">
+					<div class="tab-pane-header">
+						Product
+					</div>
+					<div class="sidebarMenuScroll">
+						<div class="sidebar-menu">
+							<ul>
+								<li>
+									<a href="products-list.html">Products List</a>
+								</li>
+								<li>
+									<a href="add-product.html">Add Product</a>
+								</li>
+								<li>
+									<a href="categories-list.html">Categories List</a>
+								</li>
+								<li>
+									<a href="add-category.html">Add Category</a>
+								</li>
+								<li>
+									<a href="products-reviews.html">Reviews</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sidebar-actions">
+						<div class="support-tile">
+							<i class="fa fa-headphones"></i> 24/7 Support
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade show active" id="tab-pages" role="tabpanel" aria-labelledby="pages-tab">
+					<div class="tab-pane-header">
+						Orders
+					</div>
+					<div class="sidebarMenuScroll">
+						<div class="sidebar-menu">
+							<ul>
+								<li>
+									<a href="create-invoice.html">Create Invoice</a>
+								</li>
+								<li>
+									<a href="view-invoice.html">View Invoice</a>
+								</li>
+								<li>
+									<a href="orders-list.html" class="current-page">Orders List</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sidebar-actions">
+						<div class="support-tile green">
+							<i class="fa fa-pie-chart"></i> 5GB Free Space
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="tab-components" role="tabpanel" aria-labelledby="components-tab">
+					<div class="tab-pane-header">
+						Customers
+					</div>
+					<div class="sidebarMenuScroll">
+						<div class="sidebar-menu">
+							<ul>
+								<li>
+									<a href="customers-list.html">Customer List</a>
+								</li>
+								<li>
+									<a href="add-customer.html">Add Customer</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sidebar-actions">
+						<div class="support-tile yellow">
+							<i class="fa fa-arrow-circle-o-down"></i><a href="#">Download Reports</a>						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="tab-graphs" role="tabpanel" aria-labelledby="graphs-tab">
+					<div class="tab-pane-header">
+						Blog
+					</div>
+					<div class="sidebarMenuScroll">
+						<div class="sidebar-menu">
+							<ul>
+								<li>
+									<a href="posts-list.html">Posts List</a>
+								</li>
+								<li>
+									<a href="add-post.html">Add Post</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sidebar-actions">
+						<div class="support-tile pink">
+							<i class="fa fa-arrow-right"></i> RTL Support
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="tab-authentication" role="tabpanel" aria-labelledby="authentication-tab">
+					<div class="tab-pane-header">
+						Authentication
+					</div>
+					<div class="sidebarMenuScroll">
+						<div class="sidebar-menu">
+							<ul>
+								<li>
+									<a href="forgot-password.html">Forgot Password</a>
+								</li>
+								<li>
+									<a href="reset-password.html">Reset Password</a>
+								</li>
+								<li>
+									<a href="maintenance.html">Maintenance</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sidebar-actions">
+						<div class="support-tile blue">
+							<a href="pricing.html" class="btn btn-light m-auto">Upgrade Account</a>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="tab-settings" role="tabpanel" aria-labelledby="settings-tab">
+					<div class="tab-pane-header">
+						Settings
+					</div>
+					<div class="sidebarMenuScroll">
+						<div class="sidebar-settings">
+							<div class="accordion" id="settingsAccordion">
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="genInfo">
+										<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#genCollapse" aria-expanded="true" aria-controls="genCollapse">
+											General Info
+										</button>
+									</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="main-container">
+		<div class="page-header">
+			<div class="row gutters">
+				<div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-9">
+					<div class="search-container">
+						<div class="toggle-sidebar" id="toggle-sidebar">
+							<i class="fa fa-bars"></i>
+						</div>
+						<div class="ui fluid category search">
+							<div class="ui icon input">
+								<input class="prompt" type="text" placeholder="Search">
+								<i class="search icon fa fa-search"></i>
+							</div>
+							<div class="results"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-3">
+					<ul class="header-actions">
+						<li class="dropdown">
+							<a href="#" id="taskss" data-toggle="dropdown" aria-haspopup="true">
+								<i class="fa fa-info-circle"></i>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end lrg" aria-labelledby="taskss">
+								<div class="dropdown-menu-header">
+									Tasks (7/10)
+								</div>
+								<div class="customScroll">
+									<ul class="activity">
+										<li class="activity-list">
+											<div class="detail-info">
+												<p class="date">Today</p>
+												<p class="info">Messages accepted with attachments</p>
+											</div>
+										</li>
+										<li class="activity-list danger">
+											<div class="detail-info">
+												<p class="date">Today</p>
+												<p class="info">Send email notifications of subscriptions and deletions to list owner</p>
+											</div>
+										</li>
+										<li class="activity-list success">
+											<div class="detail-info">
+												<p class="date">Yesterday</p>
+												<p class="info">Required change logs activity reports</p>
+											</div>
+										</li>
+										<li class="activity-list warning">
+											<div class="detail-info">
+												<p class="date">2 Days Ago</p>
+												<p class="info">Strategic partnership plan</p>
+											</div>
+										</li>
+										<li class="activity-list">
+											<div class="detail-info">
+												<p class="date">2 days ago</p>
+												<p class="info">Send email notifications of subscriptions and deletions to list owner</p>
+											</div>
+										</li>
+										<li class="activity-list danger">
+											<div class="detail-info">
+												<p class="date">3 days ago</p>
+												<p class="info">Required change logs activity reports</p>
+											</div>
+										</li>
+										<li class="activity-list success">
+											<div class="detail-info">
+												<p class="date">7 days ago</p>
+												<p class="info">Strategic partnership plan</p>
+											</div>
+										</li>
+										<li class="activity-list">
+											<div class="detail-info">
+												<p class="date">2 weeks ago</p>
+												<p class="info">Required change logs activity reports</p>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="dropdown">
+							<a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true">
+								<i class="fa fa-bell"></i>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end lrg" aria-labelledby="notifications">
+								<div class="dropdown-menu-header">
+									Notifications (7)
+								</div>
+								<div class="customScroll">
+									<ul class="header-notifications">
+										<li>
+											<a href="#">
+												<div class="user-img online">
+													<img src="img/user6.png" alt="User">
+												</div>
+												<div class="details">
+													<div class="user-title">Larkyn</div>
+													<div class="noti-details">Check out every table in detail.</div>
+													<div class="noti-date">April 25, 04:00 pm</div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<div class="user-img busy">
+													<img src="img/user10.png" alt="User">
+												</div>
+												<div class="details">
+													<div class="user-title">Braxten</div>
+													<div class="noti-details">Approved new design.</div>
+													<div class="noti-date">April 10, 12:00 am</div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<div class="user-img away">
+													<img src="img/user21.png" alt="User">
+												</div>
+												<div class="details">
+													<div class="user-title">Maria</div>
+													<div class="noti-details">Membership has been ended.</div>
+													<div class="noti-date">March 20, 07:30 pm</div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<div class="user-img busy">
+													<img src="img/user15.png" alt="User">
+												</div>
+												<div class="details">
+													<div class="user-title">Alex</div>
+													<div class="noti-details">Design Review.</div>
+													<div class="noti-date">April 18, 09:30 am</div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<div class="user-img online">
+													<img src="img/user5.png" alt="User">
+												</div>
+												<div class="details">
+													<div class="user-title">Sunny</div>
+													<div class="noti-details">UI Discussion</div>
+													<div class="noti-date">April 21, 05:00 pm</div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="dropdown">
+							<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+										<span class="avatar">
+											<img src="img/user.svg" alt="User Avatar">
+											<span class="status busy"></span>
+										</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end md" aria-labelledby="userSettings">
+								<div class="header-profile-actions">
+									<a href="user-profile.html"><i class="fa fa-user"></i>Profile</a>
+									<a href="account-settings.html"><i class="fa fa-cog"></i>Settings</a>
+									<a href="forgot-password.html"><i class="fa fa-sign-out"></i>Logout</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="content-wrapper-scroll">
+			<div class="content-wrapper">
+				<div class="row gutters">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table id="copy-print-csv" class="table v-middle">
+										<thead>
+										<tr>
+											<th>Products</th>
+											<th>Ratings</th>
+											<th>Category</th>
+											<th>Added Date</th>
+											<th>Amount</th>
+											<th>Qnty</th>
+											<th>Status</th>
+											<th>Actions</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td>
+												<div class="media-box">
+													<img src="img/products/bag.jpeg" class="media-avatar" alt="Product">
+													<div class="media-box-body">
+														<a href="#" class="text-truncate">Leather Backpack</a>
+														<p>ID: #FLM00987</p>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="rating-block">
+													<div class="rate2"></div>
+												</div>
+											</td>
+											<td>
+												Backpacks
+											</td>
+											<td>2020/09/18</td>
+											<td>$21.00</td>
+											<td>65</td>
+											<td>
+												<span class="badge bg-success">Available</span>
+											</td>
+											<td>
+												<div class="actions">
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fa fa-edit text-info"></i>
+													</a>
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fa fa-remove text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-box">
+													<img src="img/products/camera.jpeg" class="media-avatar" alt="Product">
+													<div class="media-box-body">
+														<a href="#" class="text-truncate">DSLR Camera</a>
+														<p>ID: #FLM00990</p>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="rating-block">
+													<div class="rate1"></div>
+												</div>
+											</td>
+											<td>
+												Cameras
+											</td>
+											<td>2020/10/21</td>
+											<td>$567.00</td>
+											<td>24</td>
+											<td>
+												<span class="badge bg-success">Available</span>
+											</td>
+											<td>
+												<div class="actions">
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fa fa-edit text-info"></i>
+													</a>
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fa fa-remove text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-box">
+													<img src="img/products/clock.jpeg" class="media-avatar" alt="Product">
+													<div class="media-box-body">
+														<a href="#" class="text-truncate">Wall Clock</a>
+														<p>ID: #FLM00324</p>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="rating-block">
+													<div class="rate5"></div>
+												</div>
+											</td>
+											<td>
+												Clock
+											</td>
+											<td>2020/10/24</td>
+											<td>$231.00</td>
+											<td>15</td>
+											<td>
+												<span class="badge bg-success">Available</span>
+											</td>
+											<td>
+												<div class="actions">
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fa fa-edit text-info"></i>
+													</a>
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fa fa-remove text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-box">
+													<img src="img/products/drone.jpeg" class="media-avatar" alt="Product">
+													<div class="media-box-body">
+														<a href="#" class="text-truncate">Drone</a>
+														<p>ID: #FLM00876</p>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="rating-block">
+													<div class="rate3"></div>
+												</div>
+											</td>
+											<td>
+												Drones
+											</td>
+											<td>2020/10/27</td>
+											<td>$879.00</td>
+											<td>34</td>
+											<td>
+												<span class="badge bg-success">Available</span>
+											</td>
+											<td>
+												<div class="actions">
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fa fa-edit text-info"></i>
+													</a>
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fa fa-remove text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="media-box">
+													<img src="img/products/toy.jpeg" class="media-avatar" alt="Product">
+													<div class="media-box-body">
+														<a href="#" class="text-truncate">Toy</a>
+														<p>ID: #FLM00760</p>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="rating-block">
+													<div class="rate3"></div>
+												</div>
+											</td>
+											<td>
+												Toys
+											</td>
+											<td>2020/10/22</td>
+											<td>$32.00</td>
+											<td>98</td>
+											<td>
+												<span class="badge bg-success">Available</span>
+											</td>
+											<td>
+												<div class="actions">
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fa fa-edit text-info"></i>
+													</a>
+													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fa fa-remove text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="app-footer">© ElectroShop Admin 2021</div>
+		</div>
+	</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/modernizr.js"></script>
+<script src="js/moment.js"></script>
+<script src="vendor/slimscroll/slimscroll.min.js"></script>
+<script src="vendor/slimscroll/custom-scrollbar.js"></script>
+<script src="vendor/search-filter/search-filter.js"></script>
+<script src="vendor/search-filter/custom-search-filter.js"></script>
+<script src="vendor/datatables/dataTables.min.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap.min.js"></script>
+<script src="vendor/datatables/custom/custom-datatables.js"></script>
+<script src="vendor/datatables/buttons.min.js"></script>
+<script src="vendor/datatables/jszip.min.js"></script>
+<script src="vendor/datatables/pdfmake.min.js"></script>
+<script src="vendor/datatables/vfs_fonts.js"></script>
+<script src="vendor/datatables/html5.min.js"></script>
+<script src="vendor/datatables/buttons.print.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

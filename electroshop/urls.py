@@ -33,6 +33,10 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
 
+    # admin
+    path('electroshop-admin/dashboard', views.admin_index, name='admin-index'),
+    path('electroshop-admin/analytics', views.admin_analytics, name='admin-analytics'),
+
     # new updated urls
     url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),

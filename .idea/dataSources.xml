@@ -7,5 +7,13 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\xhiti\Desktop\ElectroShop\db.sqlite3</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="electroshop_database" uuid="48b6c155-2af7-4faf-9d02-f2b773f45035">
+      <driver-ref>greenplum</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/electroshop/settings.py</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/electroshop</jdbc-url>
+    </data-source>
   </component>
 </project>

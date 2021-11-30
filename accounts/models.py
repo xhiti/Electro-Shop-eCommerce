@@ -89,3 +89,12 @@ class UserProfile(models.Model):
 
     def full_address(self):
         return f'{self.address_line_1} {self.address_line_2}'
+
+
+class Log(models.Model):
+    title = models.CharField(blank=True, max_length=100)
+    description = models.CharField(blank=True, max_length=100)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.title

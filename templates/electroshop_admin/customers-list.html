@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="en">
 	<head>
+        {% load static %}
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="Responsive Bootstrap4 Dashboard Template">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="vendor/search-filter/search-filter.css">
-		<link rel="stylesheet" href="vendor/search-filter/custom-search-filter.css">
-		<link rel="stylesheet" href="vendor/datatables/dataTables.bs4.css" />
-		<link rel="stylesheet" href="vendor/datatables/dataTables.bs4-custom.css" />
-		<link href="vendor/datatables/buttons.bs.css" rel="stylesheet" />
-		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/css/main.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/search-filter.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/datatables/dataTables.bs4.css' %}" />
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/datatables/dataTables.bs4-custom.css' %}" />
+		<link href="{% static 'electroshop-admin/vendor/datatables/buttons.bs.css' %}" rel="stylesheet" />
+		<link rel="stylesheet" href="{% static 'electroshop-admin/font-awesome-4.7.0/css/font-awesome.css' %}">
 	</head>
 	<body>
 		<div id="loading-wrapper">
@@ -23,7 +24,7 @@
 				<div class="sidebar-tabs">
 					<div class="nav" role="tablist" aria-orientation="vertical">
 						<a href="index.html" class="logo">
-							<img src="img/electroshop-admin-logo.png" alt="ElectroShop Admin">
+							<img src="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}" alt="ElectroShop Admin">
 						</a>
 						<a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
 							<i class="fa fa-dashboard"></i>
@@ -63,25 +64,25 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="index.html">Dashboard</a>
+											<a href="{% url 'admin-index' %}">Dashboard</a>
 										</li>
 										<li>
-											<a href="analytics.html">Analytics</a>
+											<a href="{% url 'admin-analytics' %}">Analytics</a>
 										</li>
 										<li>
-											<a href="sales.html">Sales</a>
+											<a href="{% url 'admin-sales' %}">Sales</a>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div class="sidebar-actions">
-								<a href="orders.html" class="red">
-									<div class="bg-avatar">12</div>
+								<a href="{% url 'admin-orders-list' %}" class="red">
+									<div class="bg-avatar">{{ no_orders }}</div>
 									<h5>New Orders</h5>
 								</a>
-								<a href="invoices-list.html" class="blue">
-									<div class="bg-avatar">24</div>
-									<h5>Bills Pending</h5>
+								<a href="{% url 'admin-products-list' %}" class="blue">
+									<div class="bg-avatar">{{ no_products }}</div>
+									<h5>New Products</h5>
 								</a>
 							</div>
 						</div>
@@ -93,19 +94,19 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="products-list.html">Products List</a>
+											<a href="{% url 'admin-products-list' %}">Products List</a>
 										</li>
 										<li>
-											<a href="add-product.html">Add Product</a>
+											<a href="{% url 'admin-add-product' %}">Add Product</a>
 										</li>
 										<li>
-											<a href="categories-list.html">Categories List</a>
+											<a href="{% url 'admin-categories-list' %}">Categories List</a>
 										</li>
 										<li>
-											<a href="add-category.html">Add Category</a>
+											<a href="{% url 'admin-add-category' %}">Add Category</a>
 										</li>
 										<li>
-											<a href="products-reviews.html">Reviews</a>
+											<a href="{% url 'admin-reviews-list' %}">Reviews</a>
 										</li>
 									</ul>
 								</div>
@@ -124,13 +125,13 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="create-invoice.html">Create Invoice</a>
+											<a href="{% url 'admin-create-invoice' %}">Create Invoice</a>
 										</li>
 										<li>
-											<a href="view-invoice.html">View Invoice</a>
+											<a href="{% url 'admin-view-invoice' %}">View Invoice</a>
 										</li>
 										<li>
-											<a href="orders-list.html">Orders List</a>
+											<a href="{% url 'admin-orders-list' %}">Orders List</a>
 										</li>
 									</ul>
 								</div>
@@ -149,10 +150,10 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="customers-list.html" class="current-page">Customer List</a>
+											<a href="{% url 'admin-customers-list' %}" class="current-page">Customer List</a>
 										</li>
 										<li>
-											<a href="add-customer.html">Add Customer</a>
+											<a href="{% url 'admin-maintenance' %}">Add Customer</a>
 										</li>
 									</ul>
 								</div>
@@ -192,20 +193,20 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="forgot-password.html">Forgot Password</a>
+											<a href="{% url 'admin-maintenance' %}">Forgot Password</a>
 										</li>
 										<li>
-											<a href="reset-password.html">Reset Password</a>
+											<a href="{% url 'admin-maintenance' %}">Reset Password</a>
 										</li>
 										<li>
-											<a href="maintenance.html">Maintenance</a>
+											<a href="{% url 'admin-maintenance' %}">Maintenance</a>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div class="sidebar-actions">
 								<div class="support-tile blue">
-									<a href="pricing.html" class="btn btn-light m-auto">Upgrade Account</a>
+									<a href="{% url 'admin-maintenance' %}" class="btn btn-light m-auto">Upgrade Account</a>
 								</div>
 							</div>
 						</div>
@@ -388,15 +389,15 @@
 								<li class="dropdown">
 									<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
 										<span class="avatar">
-											<img src="img/user.svg" alt="User Avatar">
+											<img src="{% static 'electroshop-admin/img/user.svg' %}" alt="User Avatar">
 											<span class="status busy"></span>
 										</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end md" aria-labelledby="userSettings">
 										<div class="header-profile-actions">
 											<a href="user-profile.html"><i class="fa fa-user"></i>Profile</a>
-											<a href="account-settings.html"><i class="fa fa-cog"></i>Settings</a>
-											<a href="forgot-password.html"><i class="fa fa-sign-out"></i>Logout</a>
+											<a href="{% url 'admin-maintenance' %}"><i class="fa fa-cog"></i>Settings</a>
+											<a href="{% url 'admin-maintenance' %}"><i class="fa fa-sign-out"></i>Logout</a>
 										</div>
 									</div>
 								</li>
@@ -414,495 +415,51 @@
 											<table id="copy-print-csv" class="table v-middle">
 												<thead>
 													<tr>
-														<th>&nbsp;</th>
 													  <th>Customer</th>
-													  <th>Phone</th>
-													  <th>Status</th>
-													  <th>Orders</th>
-													  <th>Last Order</th>													  
-													  <th>Amount</th>
-													  <th>Actions</th>
+													  <th>Username</th>
+													  <th>Email</th>
+													  <th>Date Joined</th>
+													  <th>Last Login</th>
+													  <th style="text-align: center">Status</th>
+													  <th style="text-align: center">Actions</th>
 													</tr>
 												</thead>
 												<tbody>
+                                                    {% for customer in customers %}
 													<tr>
-														<td>
-															<img src="img/flags/1x1/br.svg" class="img-flag" alt="Country">
-														</td>
 													  <td>
 													  	<div class="media-box">
-													  		<img src="img/user5.png" class="media-avatar" alt="Customer">
 													  		<div class="media-box-body">
-													  			<a href="#">Tiya Nixon</a>
-													  			<p>ID: #FLM00987</p>
+													  			<a href="#">{{ customer.full_name }}</a>
 													  		</div>
 													  	</div>
 													  </td>
-													  <td>030-998-03437</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>61</td>
-													  <td>2020/09/18</td>
-													  <td>$12309</td>
-													  <td>
+													  <td>{{ customer.username }}</td>
+													  <td>{{ customer.email }}</td>
+													  <td>{{ customer.date_joined }}</td>
+													  <td>{{ customer.last_login }}</td>
+													  <td style="text-align: center">
+                                                          {% if customer.is_active is True %}
+                                                              <span class="badge bg-success">Active</span>
+                                                          {% else %}
+                                                              <span class="badge bg-danger">Inactive</span>
+                                                          {% endif %}
+                                                      </td>
+													  <td style="text-align: center">
 													  	<div class="actions">
 													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
+													  			<i class="fa fa-edit text-info fa-2x"></i>
+													  		</a>
+                                                            <a href="#" style="opacity: 0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+													  			<i class="fa fa-edit text-info fa-2x"></i>
 													  		</a>
 													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
+													  			<i class="fa fa-remove text-danger fa-2x"></i>
 													  		</a>
 													  	</div>
 													  </td>
 													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/ni.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user2.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Garrett Winters</a>
-													  			<p>ID: #FLM00763</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>067-676-98320</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>87</td>
-													  <td>2020/10/25</td>
-													  <td>$32800</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/za.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user8.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Cedric Kelly</a>
-													  			<p>ID: #FLM00582</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>009-543-77650</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>34</td>
-													  <td>2020/10/22</td>
-													  <td>$65890</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/eu.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user12.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Rhona Davidson</a>
-													  			<p>ID: #FLM00554</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>067-676-98320</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>21</td>
-													  <td>2020/10/10</td>
-													  <td>$25678</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/bv.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user19.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Quinn Flynn</a>
-													  			<p>ID: #FLM00831</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>002-434-66659</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>55</td>
-													  <td>2020/10/21</td>
-													  <td>$24571</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/se.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user16.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Paul Byrd</a>
-													  			<p>ID: #FLM00831</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>334-789-54545</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>87</td>
-													  <td>2020/10/30</td>
-													  <td>$7769</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>													
-													<tr>
-														<td>
-															<img src="img/flags/1x1/in.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user13.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Gavin Joyce</a>
-													  			<p>ID: #FLM00999</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>080-888-65666</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>77</td>
-													  <td>2020/09/21</td>
-													  <td>$67690</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/hn.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user9.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Tiya Nixon</a>
-													  			<p>ID: #FLM00987</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>030-998-03437</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>61</td>
-													  <td>2020/09/18</td>
-													  <td>$12309</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/au.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user6.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Garrett Winters</a>
-													  			<p>ID: #FLM00323</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>067-676-98320</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>87</td>
-													  <td>2020/10/25</td>
-													  <td>$32800</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/ca.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user24.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Dai Rios</a>
-													  			<p>ID: #FLM00333</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>008-909-65666</td>
-													  <td>
-													  	<span class="badge bg-danger">Blocked</span>
-													  </td>
-													  <td>18</td>
-													  <td>2020/10/21</td>
-													  <td>$8872</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/eu.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user4.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Cedric Kelly</a>
-													  			<p>ID: #FLM00582</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>009-543-77650</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>34</td>
-													  <td>2020/10/22</td>
-													  <td>$65890</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/cw.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user14.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Rhona Davidson</a>
-													  			<p>ID: #FLM00554</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>067-676-98320</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>21</td>
-													  <td>2020/10/10</td>
-													  <td>$25678</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/za.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user8.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Cedric Kelly</a>
-													  			<p>ID: #FLM00582</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>009-543-77650</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>34</td>
-													  <td>2020/10/22</td>
-													  <td>$65890</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/eu.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user12.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Rhona Davidson</a>
-													  			<p>ID: #FLM00554</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>067-676-98320</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>21</td>
-													  <td>2020/10/10</td>
-													  <td>$25678</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
-													<tr>
-														<td>
-															<img src="img/flags/1x1/bv.svg" class="img-flag" alt="Country">
-														</td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/user19.png" class="media-avatar" alt="Customer">
-													  		<div class="media-box-body">
-													  			<a href="#">Quinn Flynn</a>
-													  			<p>ID: #FLM00831</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>002-434-66659</td>
-													  <td>
-													  	<span class="badge bg-success">Active</span>
-													  </td>
-													  <td>55</td>
-													  <td>2020/10/21</td>
-													  <td>$24571</td>
-													  <td>
-													  	<div class="actions">
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-													  			<i class="fa fa-edit text-info"></i>
-													  		</a>
-													  		
-													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-													  			<i class="fa fa-remove text-danger"></i>
-													  		</a>
-													  	</div>
-													  </td>
-													</tr>
+                                                    {% endfor %}
 												</tbody>
 								    	</table>
 										</div>
@@ -915,23 +472,23 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.bundle.min.js"></script>
-		<script src="js/modernizr.js"></script>
-		<script src="js/moment.js"></script>
-		<script src="vendor/slimscroll/slimscroll.min.js"></script>
-		<script src="vendor/slimscroll/custom-scrollbar.js"></script>
-		<script src="vendor/search-filter/search-filter.js"></script>
-		<script src="vendor/search-filter/custom-search-filter.js"></script>
-		<script src="vendor/datatables/dataTables.min.js"></script>
-		<script src="vendor/datatables/dataTables.bootstrap.min.js"></script>
-		<script src="vendor/datatables/custom/custom-datatables.js"></script>
-		<script src="vendor/datatables/buttons.min.js"></script>
-		<script src="vendor/datatables/jszip.min.js"></script>
-		<script src="vendor/datatables/pdfmake.min.js"></script>
-		<script src="vendor/datatables/vfs_fonts.js"></script>
-		<script src="vendor/datatables/html5.min.js"></script>
-		<script src="vendor/datatables/buttons.print.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="{% static 'electroshop-admin/js/jquery.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/modernizr.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/moment.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/slimscroll/slimscroll.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/slimscroll/custom-scrollbar.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/search-filter/search-filter.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/dataTables.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/dataTables.bootstrap.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/custom/custom-datatables.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/buttons.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/jszip.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/pdfmake.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/vfs_fonts.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/html5.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/buttons.print.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/main.js' %}"></script>
 	</body>
 </html>

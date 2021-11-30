@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="en">
 	<head>
+        {% load static %}
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="Responsive Bootstrap4 Dashboard Template">
 		<meta name="author" content="Mexhit Kurti">
-		<link rel="shortcut icon" href="img/electroshop-admin-logo.png">
+		<link rel="shortcut icon" href="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}">
 		<title>ElectroShop Admin</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="vendor/search-filter/search-filter.css">
-		<link rel="stylesheet" href="vendor/search-filter/custom-search-filter.css">
-		<link rel="stylesheet" href="vendor/datatables/dataTables.bs4.css" />
-		<link rel="stylesheet" href="vendor/datatables/dataTables.bs4-custom.css" />
-		<link href="vendor/datatables/buttons.bs.css" rel="stylesheet" />
-		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/css/main.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/search-filter.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/datatables/dataTables.bs4.css' %}" />
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/datatables/dataTables.bs4-custom.css' %}" />
+		<link href="{% static 'electroshop-admin/vendor/datatables/buttons.bs.css' %}" rel="stylesheet" />
+		<link rel="stylesheet" href="{% static 'electroshop-admin/font-awesome-4.7.0/css/font-awesome.css' %}">
 	</head>
 	<body>
 		<div id="loading-wrapper">
@@ -26,7 +27,7 @@
 				<div class="sidebar-tabs">
 					<div class="nav" role="tablist" aria-orientation="vertical">
 						<a href="index.html" class="logo">
-							<img src="img/electroshop-admin-logo.png" alt="ElectroShop Admin">
+							<img src="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}" alt="ElectroShop Admin">
 						</a>
 						<a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
 							<i class="fa fa-dashboard"></i>
@@ -66,13 +67,13 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="index.html">Dashboard</a>
+											<a href="{% url 'admin-index' %}">Dashboard</a>
 										</li>
 										<li>
-											<a href="analytics.html">Analytics</a>
+											<a href="{% url 'admin-analytics' %}">Analytics</a>
 										</li>
 										<li>
-											<a href="sales.html">Sales</a>
+											<a href="{% url 'admin-sales' %}">Sales</a>
 										</li>
 									</ul>
 								</div>
@@ -82,9 +83,9 @@
 									<div class="bg-avatar">12</div>
 									<h5>New Orders</h5>
 								</a>
-								<a href="invoices-list.html" class="blue">
+								<a href="{% url 'admin-products-list' %}" class="blue">
 									<div class="bg-avatar">24</div>
-									<h5>Bills Pending</h5>
+									<h5>New Products</h5>
 								</a>
 							</div>
 						</div>
@@ -96,19 +97,19 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="products-list.html">Products List</a>
+											<a href="{% url 'admin-products-list' %}">Products List</a>
 										</li>
 										<li>
-											<a href="add-product.html">Add Product</a>
+											<a href="{% url 'admin-add-product' %}">Add Product</a>
 										</li>
 										<li>
-											<a href="categories-list.html">Categories List</a>
+											<a href="{% url 'admin-categories-list' %}">Categories List</a>
 										</li>
 										<li>
-											<a href="add-category.html">Add Category</a>
+											<a href="{% url 'admin-add-category' %}">Add Category</a>
 										</li>
 										<li>
-											<a href="products-reviews.html" class="current-page">Reviews</a>
+											<a href="{% url 'admin-reviews-list' %}" class="current-page">Reviews</a>
 										</li>
 									</ul>
 								</div>
@@ -391,7 +392,7 @@
 								<li class="dropdown">
 									<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
 										<span class="avatar">
-											<img src="img/user.svg" alt="User Avatar">
+											<img src="{% static 'electroshop-admin/img/user.svg' %}" alt="User Avatar">
 											<span class="status busy"></span>
 										</span>
 									</a>
@@ -419,140 +420,59 @@
 													<tr>
 													  <th>User</th>
 													  <th>Product</th>
-													  <th>Review</th>													  
+													  <th>Date</th>
+													  <th>Subject</th>
+													  <th style="text-align: center">Rating</th>
+													  <th style="text-align: center">Actions</th>
 													</tr>
 												</thead>
 												<tbody>
+                                                    {% for review in reviews %}
 													<tr>
 														<td>
 													  	<div class="media-box">
-													  		<img src="img/user15.png" class="media-avatar" alt="User">
 													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Tiya Nixon</a>
-													  			<p>2020/09/18</p>
+													  			<a href="#" class="text-truncate">{{ review.user.full_name }}</a>
 													  		</div>
 													  	</div>
 													  </td>
 													  <td>
 													  	<div class="media-box">
-													  		<img src="img/products/bag.jpeg" class="media-avatar-lg" alt="Product">
 													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Leather Backpack</a>
-													  			<p>ID: #FLM00987</p>
-													  			<div class="rating-block">
-																		<div class="rate2"></div>
-																	</div>
+													  			<a href="#" class="text-truncate">{{ review.product.product_name }}</a>
 													  		</div>
 													  	</div>
 													  </td>
-													  <td>
-													  	Great Product. Very happy with the purchase and will surely shop for more with Leather Villa in the time to come.
+                                                      <td>
+													  	{{ review.created_at }}
+													  </td>
+													  <td style="text-align: center!important;">
+													  	{{ review.review }}
+													  </td>
+                                                      <td>
+													  	<span style="color: #FBB102!important;">
+                                                            <i class="fa fa-star{% if review.rating == 0.5 %}-half-o{% elif review.rating < 1 %}-o{% endif %}" aria-hidden="true"></i>
+                                                            <i class="fa fa-star{% if review.rating == 1.5 %}-half-o{% elif review.rating < 2 %}-o{% endif %}" aria-hidden="true"></i>
+                                                            <i class="fa fa-star{% if review.rating == 2.5 %}-half-o{% elif review.rating < 3 %}-o{% endif %}" aria-hidden="true"></i>
+                                                            <i class="fa fa-star{% if review.rating == 3.5 %}-half-o{% elif review.rating < 4 %}-o{% endif %}" aria-hidden="true"></i>
+                                                            <i class="fa fa-star{% if review.rating == 4.5 %}-half-o{% elif review.rating < 5 %}-o{% endif %}" aria-hidden="true"></i>
+                                                        </span>
+													  </td>
+                                                      <td style="text-align: center!important;">
+													  	<div class="actions">
+													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+													  			<i class="fa fa-edit text-info fa-2x"></i>
+													  		</a>
+                                                            <a href="#" style="opacity: 0">
+                                                                <i class="fa fa-remove text-danger fa-2x"></i>
+                                                            </a>
+													  		<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+													  			<i class="fa fa-remove text-danger fa-2x"></i>
+													  		</a>
+													  	</div>
 													  </td>
 													</tr>
-													<tr>
-														<td>
-													  	<div class="media-box">
-													  		<img src="img/user2.png" class="media-avatar" alt="User">
-													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Garrett Winters</a>
-													  			<p>2020/10/21</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/products/camera.jpeg" class="media-avatar-lg" alt="Product">
-													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">DSLR Camera</a>
-													  			<p>ID: #FLM00990</p>
-													  			<div class="rating-block">
-																		<div class="rate1"></div>
-																	</div>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>
-													  	This camera is a perfect choice if you are a beginner. The price range is decent, the camera is user friendly. 
-													  </td>
-													</tr>
-													<tr>
-														<td>
-													  	<div class="media-box">
-													  		<img src="img/user5.png" class="media-avatar" alt="User">
-													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Cedric Kelly</a>
-													  			<p>2020/10/24</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/products/clock.jpeg" class="media-avatar-lg" alt="Product">
-													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Wall Clock</a>
-													  			<p>ID: #FLM00324</p>
-													  			<div class="rating-block">
-																		<div class="rate5"></div>
-																	</div>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>
-													  	Awesome Product. This is a good size for a classroom clock. We added a new room to our school and this clock fits our needs wonderfully.
-													  </td>													  
-													</tr>
-													<tr>
-														<td>
-													  	<div class="media-box">
-													  		<img src="img/user12.png" class="media-avatar" alt="User">
-													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Rhona Davidson</a>
-													  			<p>2020/10/27</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/products/drone.jpeg" class="media-avatar-lg" alt="Product">
-													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Drone</a>
-													  			<p>ID: #FLM00876</p>
-													  			<div class="rating-block">
-																		<div class="rate3"></div>
-																	</div>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>
-													  	Five Starts. This drone literally has too many pro's to list, they call it a pro for a reason.
-													  </td>													  
-													</tr>
-													<tr>
-														<td>
-													  	<div class="media-box">
-													  		<img src="img/user23.png" class="media-avatar" alt="User">
-													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Quinn Flynn</a>
-													  			<p>2020/10/22</p>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>
-													  	<div class="media-box">
-													  		<img src="img/products/toy.jpeg" class="media-avatar-lg" alt="Product">
-													  		<div class="media-box-body">
-													  			<a href="#" class="text-truncate">Toy</a>
-													  			<p>ID: #FLM00760</p>
-													  			<div class="rating-block">
-																		<div class="rate3"></div>
-																	</div>
-													  		</div>
-													  	</div>
-													  </td>
-													  <td>
-													  	Great product! My kids really love how many things they can build. Hours and hours of fun ahead with this toy. The parts are great quality and there are many things to build.
-													  </td>													  
-													</tr>
+                                                    {% endfor %}
 												</tbody>
 								    	</table>
 										</div>
@@ -565,23 +485,23 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.bundle.min.js"></script>
-		<script src="js/modernizr.js"></script>
-		<script src="js/moment.js"></script>
-		<script src="vendor/slimscroll/slimscroll.min.js"></script>
-		<script src="vendor/slimscroll/custom-scrollbar.js"></script>
-		<script src="vendor/search-filter/search-filter.js"></script>
-		<script src="vendor/search-filter/custom-search-filter.js"></script>
-		<script src="vendor/datatables/dataTables.min.js"></script>
-		<script src="vendor/datatables/dataTables.bootstrap.min.js"></script>
-		<script src="vendor/datatables/custom/custom-datatables.js"></script>
-		<script src="vendor/datatables/buttons.min.js"></script>
-		<script src="vendor/datatables/jszip.min.js"></script>
-		<script src="vendor/datatables/pdfmake.min.js"></script>
-		<script src="vendor/datatables/vfs_fonts.js"></script>
-		<script src="vendor/datatables/html5.min.js"></script>
-		<script src="vendor/datatables/buttons.print.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="{% static 'electroshop-admin/js/jquery.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/modernizr.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/moment.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/slimscroll/slimscroll.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/slimscroll/custom-scrollbar.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/search-filter/search-filter.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/dataTables.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/dataTables.bootstrap.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/custom/custom-datatables.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/buttons.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/jszip.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/pdfmake.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/vfs_fonts.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/html5.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/datatables/buttons.print.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/main.js' %}"></script>
 	</body>
 </html>

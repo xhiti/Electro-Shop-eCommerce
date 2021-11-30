@@ -1,19 +1,20 @@
 <!doctype html>
 <html lang="en">
 	<head>
+        {% load static %}
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="Responsive Bootstrap4 Dashboard Template">
 		<meta name="author" content="Mexhit Kurti">
-		<link rel="shortcut icon" href="img/electroshop-admin-logo.png">
+		<link rel="shortcut icon" href="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}">
 		<title>ElectroShop Admin</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="vendor/search-filter/search-filter.css">
-		<link rel="stylesheet" href="vendor/search-filter/custom-search-filter.css">
-		<link rel="stylesheet" href="vendor/bs-select/bs-select.css" />
-		<link rel="stylesheet" href="vendor/daterange/daterange.css">
-		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/css/main.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/search-filter.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/bs-select/bs-select.css' %}" />
+		<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/daterange/daterange.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/font-awesome-4.7.0/css/font-awesome.css' %}">
 	</head>
 	<body>
 		<div class="page-wrapper">
@@ -21,7 +22,7 @@
 				<div class="sidebar-tabs">
 					<div class="nav" role="tablist" aria-orientation="vertical">
 						<a href="index.html" class="logo">
-							<img src="img/electroshop-admin-logo.png" alt="ElectroShop Admin">
+							<img src="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}" alt="ElectroShop Admin">
 						</a>
 						<a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
 							<i class="fa fa-dashboard"></i>
@@ -61,25 +62,25 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="index.html">Dashboard</a>
+											<a href="{% url 'admin-index' %}">Dashboard</a>
 										</li>
 										<li>
-											<a href="analytics.html">Analytics</a>
+											<a href="{% url 'admin-analytics' %}">Analytics</a>
 										</li>
 										<li>
-											<a href="sales.html">Sales</a>
+											<a href="{% url 'admin-sales' %}">Sales</a>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div class="sidebar-actions">
-								<a href="orders.html" class="red">
-									<div class="bg-avatar">12</div>
+								<a href="{% url 'admin-orders-list' %}" class="red">
+									<div class="bg-avatar">{{ no_orders }}</div>
 									<h5>New Orders</h5>
 								</a>
-								<a href="invoices-list.html" class="blue">
-									<div class="bg-avatar">24</div>
-									<h5>Bills Pending</h5>
+								<a href="{% url 'admin-products-list' %}" class="blue">
+									<div class="bg-avatar">{{ no_products }}</div>
+									<h5>New Products</h5>
 								</a>
 							</div>
 						</div>
@@ -91,19 +92,19 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="products-list.html">Products List</a>
+											<a href="{% url 'admin-products-list' %}">Products List</a>
 										</li>
 										<li>
-											<a href="add-product.html">Add Product</a>
+											<a href="{% url 'admin-add-product' %}">Add Product</a>
 										</li>
 										<li>
-											<a href="categories-list.html">Categories List</a>
+											<a href="{% url 'admin-categories-list' %}">Categories List</a>
 										</li>
 										<li>
-											<a href="add-category.html">Add Category</a>
+											<a href="{% url 'admin-add-category' %}">Add Category</a>
 										</li>
 										<li>
-											<a href="products-reviews.html">Reviews</a>
+											<a href="{% url 'admin-reviews-list' %}">Reviews</a>
 										</li>
 									</ul>
 								</div>
@@ -122,13 +123,13 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="create-invoice.html" class="current-page">Create Invoice</a>
+											<a href="{% url 'admin-create-invoice' %}" class="current-page">Create Invoice</a>
 										</li>
 										<li>
-											<a href="view-invoice.html">View Invoice</a>
+											<a href="{% url 'admin-view-invoice' %}">View Invoice</a>
 										</li>
 										<li>
-											<a href="orders-list.html">Orders List</a>
+											<a href="{% url 'admin-orders-list' %}">Orders List</a>
 										</li>
 									</ul>
 								</div>
@@ -150,7 +151,7 @@
 											<a href="customers-list.html">Customer List</a>
 										</li>
 										<li>
-											<a href="add-customer.html">Add Customer</a>
+											<a href="{% url 'admin-maintenance' %}">Add Customer</a>
 										</li>
 									</ul>
 								</div>
@@ -196,7 +197,7 @@
 											<a href="reset-password.html">Reset Password</a>
 										</li>
 										<li>
-											<a href="maintenance.html">Maintenance</a>
+											<a href="{% url 'admin-maintenance' %}">Maintenance</a>
 										</li>
 									</ul>
 								</div>
@@ -386,7 +387,7 @@
 								<li class="dropdown">
 									<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
 										<span class="avatar">
-											<img src="img/user.svg" alt="User Avatar">
+											<img src="{% static 'electroshop-admin/img/user.svg' %}" alt="User Avatar">
 											<span class="status busy"></span>
 										</span>
 									</a>
@@ -410,7 +411,7 @@
 									<div class="card-header-lg">
 										<h4>Create Invoice</h4>
 										<div class="text-end">
-											<a href="view-invoice.html" class="btn btn-light">View Invoice</a>
+											<a href="{% url 'admin-view-invoice' %}" class="btn btn-light">View Invoice</a>
 										</div>
 									</div>
 									<div class="card-body">
@@ -465,11 +466,12 @@
 													<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 														<div class="field-wrapper">
 															<select class="select-single js-states" title="Select Term" data-live-search="true">
-																<option>Monthly</option>
-																<option>Quarterly</option>
-																<option>Yearly</option>
+																<option>New</option>
+																<option>Accepted</option>
+																<option>Completed</option>
+																<option>Canceled</option>
 															</select>
-															<div class="field-placeholder">Payment Terms</div>
+															<div class="field-placeholder">Payment Status</div>
 														</div>
 													</div>
 													<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -574,10 +576,10 @@
 																<td>
 																	<div class="table-actions">
 																		<button class="btn btn-light">
-																			<i class="icon-trash-2"></i>
+																			<i class="fa fa-trash"></i>
 																		</button>
 																		<button class="btn btn-light">
-																			<i class="icon-edit-3"></i>
+																			<i class="fa fa-edit"></i>
 																		</button>
 																	</div>
 																</td>
@@ -645,10 +647,10 @@
 																<td>
 																	<div class="table-actions">
 																		<button class="btn btn-light">
-																			<i class="icon-trash-2"></i>
+																			<i class="fa fa-trash"></i>
 																		</button>
 																		<button class="btn btn-light">
-																			<i class="icon-edit-3"></i>
+																			<i class="fa fa-edit"></i>
 																		</button>
 																	</div>
 																</td>
@@ -709,18 +711,18 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.bundle.min.js"></script>
-		<script src="js/modernizr.js"></script>
-		<script src="js/moment.js"></script>
-		<script src="vendor/slimscroll/slimscroll.min.js"></script>
-		<script src="vendor/slimscroll/custom-scrollbar.js"></script>
-		<script src="vendor/search-filter/search-filter.js"></script>
-		<script src="vendor/search-filter/custom-search-filter.js"></script>
-		<script src="vendor/bs-select/bs-select.min.js"></script>
-		<script src="vendor/bs-select/bs-select-custom.js"></script>
-		<script src="vendor/daterange/daterange.js"></script>
-		<script src="vendor/daterange/custom-daterange.js"></script>
-		<script src="js/main.js"></script>
+		<script src="{% static 'electroshop-admin/js/jquery.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/modernizr.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/moment.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/slimscroll/slimscroll.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/slimscroll/custom-scrollbar.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/search-filter/search-filter.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/bs-select/bs-select.min.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/bs-select/bs-select-custom.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/daterange/daterange.js' %}"></script>
+		<script src="{% static 'electroshop-admin/vendor/daterange/custom-daterange.js' %}"></script>
+		<script src="{% static 'electroshop-admin/js/main.js' %}"></script>
 	</body>
 </html>

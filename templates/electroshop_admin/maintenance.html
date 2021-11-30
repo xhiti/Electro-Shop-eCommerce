@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en">
 	<head>
+        {% load static %}
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="Responsive Bootstrap4 Dashboard Template">
 		<meta name="author" content="Mexhit Kurti">
-		<link rel="shortcut icon" href="img/electroshop-admin-logo.png" />
+		<link rel="shortcut icon" href="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}" />
 		<title>ElectroShop Admin</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'electroshop-admin/css/main.css' %}">
 	</head>
 	<body class="maintenance-page">
         <div class="container">
@@ -19,12 +20,12 @@
                         <h4>Under Construction</h4>
 						<p>Sorry for the inconvenience but we are performing some maintenance at the moment. We will be back online shortly!</p>
 						<div class="mt-4">
-							<a href="index.html" class="btn stripes-btn">Go Back to Dashboard</a>
+							<a href="{% url 'admin-index' %}" class="btn stripes-btn">Go Back to Dashboard</a>
 						</div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 col-12">
-                    <img src="img/maintenance.png" class="img-fluid" alt="Maintenance" />
+                    <img src="{% static 'electroshop-admin/img/maintenance.png' %}" class="img-fluid" alt="Maintenance" />
                 </div>
             </div>
         </div>

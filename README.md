@@ -1,5 +1,5 @@
 # Electro-Shop-eCommerce
-### ElectroShop eCommerce Django &amp; SQLite
+### ElectroShop eCommerce Django &amp; PostgreSQL
 
 This project is to develop a fully-featured eCommerce website and redesign any Django-based web applications.
 
@@ -34,5 +34,5 @@ With that said, we’ll be building a fully custom featured eCommerce applicatio
 - Payment Gateway Integration & Place Order
 - Rating Average & Review Count Calculation
 
-Note: I have used a template that i download from the internet and all the autorities goes to him.
-      I will use it for teaching purposes.
+Note: I have used a template that i downloaded from the internet and all the authorities goes to the template's author.
+      I will use it only for teaching and personal purposes.

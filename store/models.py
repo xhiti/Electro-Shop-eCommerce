@@ -42,6 +42,12 @@ class Product(models.Model):
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
 
+    def get_edit_url(self):
+        return reverse('edit-product', args=[str(self.id)])
+
+    def get_delete_url(self):
+        return reverse('delete-product', args=[str(self.id)])
+
 
 class VariationManager(models.Manager):
 

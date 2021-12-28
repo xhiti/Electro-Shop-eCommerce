@@ -133,5 +133,17 @@ def submit_review(request, product_id):
                 messages.success(request, 'Thank You: Your review has been submited!')
 
                 return redirect(current_url)
-
     return
+
+
+    def delete_category(request, pk):
+        return
+
+    def edit_category(request, pk):
+        return
+
+    def edit_product(request, pk):
+        return
+
+    def delete_product(request, pk):
+        return

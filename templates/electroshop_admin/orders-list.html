@@ -425,7 +425,7 @@
 											<th>Payment</th>
 											<th>Tax</th>
 											<th>Status</th>
-											<th>Actions</th>
+{#											<th>Actions</th>#}
 										</tr>
 										</thead>
 										<tbody>
@@ -452,19 +452,17 @@
 											<td>
 												<span class="badge bg-success">{{ order.status }}</span>
 											</td>
-											<td style="text-align: center">
-												<div class="actions" style="text-align: center">
-													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-														<i class="fa fa-edit text-info fa-2x"></i>
-													</a>
-                                                    <a href="#" style="opacity: 0;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-														<i class="fa fa-edit text-info fa-2x"></i>
-													</a>
-													<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-														<i class="fa fa-remove text-danger fa-2x"></i>
-													</a>
-												</div>
-											</td>
+{#											<td style="text-align: center">#}
+{#												<div class="actions">#}
+{#                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Edit" data-original-title="Edit" style="background-color: #21618C">#}
+{#                                                        <i class="fa fa-edit text-white"></i>#}
+{#                                                    </a>#}
+{#                                                    <div style="width: 10px"></div>#}
+{#                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete" style="background-color: #F32013">#}
+{#                                                        <i class="fa fa-trash text-white"></i>#}
+{#                                                    </a>#}
+{#                                                </div>#}
+{#											</td>#}
 										</tr>
                                         {% endfor %}
 										</tbody>

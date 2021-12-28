@@ -90,6 +90,9 @@ class UserProfile(models.Model):
     def full_address(self):
         return f'{self.address_line_1} {self.address_line_2}'
 
+    def get_delete_url(self):
+        return reverse('delete-customer', args=[str(self.id)])
+
 
 class Log(models.Model):
     title = models.CharField(blank=True, max_length=100)

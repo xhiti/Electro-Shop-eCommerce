@@ -16,3 +16,9 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_edit_url(self):
+        return reverse('edit-post', args=[str(self.id)])
+
+    def get_delete_url(self):
+        return reverse('delete-post', args=[str(self.id)])

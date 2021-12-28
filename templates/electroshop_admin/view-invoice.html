@@ -148,10 +148,10 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="customers-list.html">Customer List</a>
+											<a href="{% url 'admin-customers-list' %}">Customer List</a>
 										</li>
 										<li>
-											<a href="add-customer.html">Add Customer</a>
+											<a href="{% url 'admin-maintenance' %}">Add Customer</a>
 										</li>
 									</ul>
 								</div>
@@ -169,10 +169,10 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="posts-list.html">Posts List</a>
+											<a href="{% url 'admin-posts-list' %}">Posts List</a>
 										</li>
 										<li>
-											<a href="add-post.html">Add Post</a>
+											<a href="{% url 'admin-add-post' %}">Add Post</a>
 										</li>
 									</ul>
 								</div>
@@ -191,20 +191,20 @@
 								<div class="sidebar-menu">
 									<ul>
 										<li>
-											<a href="forgot-password.html">Forgot Password</a>
+											<a href="{% url 'admin-maintenance' %}">Forgot Password</a>
 										</li>
 										<li>
-											<a href="reset-password.html">Reset Password</a>
+											<a href="{% url 'admin-maintenance' %}">Reset Password</a>
 										</li>
 										<li>
-											<a href="maintenance.html">Maintenance</a>
+											<a href="{% url 'admin-maintenance' %}">Maintenance</a>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div class="sidebar-actions">
 								<div class="support-tile blue">
-									<a href="pricing.html" class="btn btn-light m-auto">Upgrade Account</a>
+									<a href="{% url 'admin-maintenance' %}" class="btn btn-light m-auto">Upgrade Account</a>
 								</div>
 							</div>
 						</div>
@@ -393,9 +393,9 @@
 									</a>
 									<div class="dropdown-menu dropdown-menu-end md" aria-labelledby="userSettings">
 										<div class="header-profile-actions">
-											<a href="user-profile.html"><i class="fa fa-user"></i>Profile</a>
-											<a href="account-settings.html"><i class="fa fa-cog"></i>Settings</a>
-											<a href="forgot-password.html"><i class="fa fa-sign-out"></i>Logout</a>
+											<a href="{% url 'admin-maintenance' %}"><i class="fa fa-user"></i>Profile</a>
+											<a href="{% url 'admin-maintenance' %}"><i class="fa fa-cog"></i>Settings</a>
+											<a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout</a>
 										</div>
 									</div>
 								</li>

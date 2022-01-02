@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.conf.urls import url
 from django.urls import path
 from . import views
 
@@ -9,4 +10,8 @@ urlpatterns = [
     path('category/<slug:category_slug>/<product_slug>/', views.product_detail, name='product_detail'),
     path('search/', views.search, name='search'),
     path('submit_review/<int:product_id>', views.submit_review, name='submit_review'),
+]
+
+urlpatterns += [
+    path('products/xml/', views.product_xml_report, name='product-xml-report')
 ]

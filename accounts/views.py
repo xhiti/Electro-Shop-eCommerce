@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, UserForm, UserProfileForm
-from .models import Account, UserProfile
+from .models import Account, UserProfile, MyAccountManager
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 
@@ -73,40 +73,51 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
-            try:
-                # print("Try Block")
-                cart = Cart.objects.get(cart_id=_cart_id(request))
-                # print("Get cart")
-                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
-                # print(is_cart_item_exists)
 
-                if is_cart_item_exists:
-                    cart_item = CartItem.objects.filter(cart=cart)
-                    # print(cart_item)
+            current_user = Account.objects.filter(email=email).first()
+            # print("Current User: " + str(current_user))
+            is_admin = current_user.is_admin
+            # print("Is SuperAdmin?? " + str(is_admin))
 
-                    for item in cart_item:
-                        item.user = user
-                        item.save()
-                        # print("SAVED!")
+            if is_admin is True:
+                auth.login(request, user)
+                messages.success(request, 'Logged in successfully!')
+                # print("Is Admin")
+                return redirect('admin-index')
+            elif is_admin is False:
+                # print("Is User")
+                try:
+                    # print("Try Block")
+                    cart = Cart.objects.get(cart_id=_cart_id(request))
+                    # print("Get cart")
+                    is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
+                    # print(is_cart_item_exists)
 
-            except:
-                # print('Except Block')
-                pass
-            auth.login(request, user)
-            messages.success(request, 'Logged in successfully!')
-            url = request.META.get('HTTP_REFERER')
-            try:
-                query = requests.utils.urlparse(url).query
-                params = dict(x.split('=') for x in query.split('&'))
+                    if is_cart_item_exists:
+                        cart_item = CartItem.objects.filter(cart=cart)
+                        # print(cart_item)
 
-                if 'next' in params:
-                    nextPage = params['next']
+                        for item in cart_item:
+                            item.user = user
+                            item.save()
+                            # print("SAVED!")
 
-                    return redirect(nextPage)
+                except:
+                    # print('Except Block')
+                    pass
+                auth.login(request, user)
+                messages.success(request, 'Logged in successfully!')
+                url = request.META.get('HTTP_REFERER')
+                try:
+                    query = requests.utils.urlparse(url).query
+                    params = dict(x.split('=') for x in query.split('&'))
 
-            except:
-                return redirect('store')
+                    if 'next' in params:
+                        nextPage = params['next']
 
+                        return redirect(nextPage)
+                except:
+                    return redirect('store')
         else:
             messages.error(request, 'Email or password is incorrect!')
             return redirect('login')

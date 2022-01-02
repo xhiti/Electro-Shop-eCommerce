@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.template import loader
+from django.template.loader import get_template
 from django.http import HttpResponse, JsonResponse
 from carts.models import CartItem
 import datetime
@@ -168,3 +171,11 @@ def order_complete(request):
         return redirect('index')
 
 
+@login_required(login_url='login')
+def order_xml_report(request):
+    orders = Order.objects.filter(is_ordered=True).order_by('order_number')
+    template = loader.get_template('xml/orders.xml')
+    context = {
+        'orders': orders
+    }
+    return HttpResponse(template.render(context))

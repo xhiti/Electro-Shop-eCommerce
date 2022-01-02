@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orders>
+    {% for order in orders %}
+    <order>
+        <number>{{ order.order_number }}</number>
+        <firstname>{{ order.first_name }}</firstname>
+        <lastname>{{ order.last_name }}</lastname>
+        <email>{{ order.email }}</email>
+        {% if order.payment.amount_paid is not None %}
+            <payment>${{ order.payment.amount_paid }}</payment>
+        {% endif %}
+        <total>${{ order.order_total }}</total>
+        {% if order.payment.amount_paid is not None %}
+            <status>Paid</status>
+        {% else %}
+            <status>Unpaid</status>
+        {% endif %}
+    </order>
+    {% endfor %}
+</orders>

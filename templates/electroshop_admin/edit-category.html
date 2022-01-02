@@ -8,25 +8,23 @@
     <meta name="author" content="Mexhit Kurti">
     <link rel="shortcut icon" href="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}">
     <title>ElectroShop Admin</title>
-	<link rel="stylesheet" href="{% static 'electroshop-admin/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static 'electroshop-admin/css/main.css' %}">
-	<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/search-filter.css' %}">
-	<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.css' %}">
-	<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/datatables/dataTables.bs4.css' %}">
-	<link rel="stylesheet" href="{% static 'electroshop-admin/vendor/datatables/dataTables.bs4-custom.css' %}">
-	<link href="{% static 'electroshop-admin/vendor/datatables/buttons.bs.css' %}" rel="stylesheet">
-	<link rel="stylesheet" href="{% static 'electroshop-admin/font-awesome-4.7.0/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'electroshop-admin/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'electroshop-admin/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/search-filter.css' %}">
+    <link rel="stylesheet" href="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.css' %}">
+    <link rel="stylesheet" href="{% static 'electroshop-admin/vendor/wizard/jquery.steps.css' %}" />
+    <link rel="stylesheet" href="{% static 'electroshop-admin/vendor/summernote/summernote-bs4.css' %}" />
+    <link rel="stylesheet" href="{% static 'electroshop-admin/vendor/bs-select/bs-select.css' %}" />
+    <link rel="stylesheet" href="{% static 'electroshop-admin/vendor/dropzone/dropzone.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'electroshop-admin/vendor/input-tags/tagsinput.css' %}" />
+    <link rel="stylesheet" href="{% static 'electroshop-admin/font-awesome-4.7.0/css/font-awesome.css' %}">
 </head>
 <body>
-<div id="loading-wrapper">
-    <div class="spinner-border"></div>
-    Loading...
-</div>
 <div class="page-wrapper">
     <nav class="sidebar-wrapper">
         <div class="sidebar-tabs">
             <div class="nav" role="tablist" aria-orientation="vertical">
-                <a href="{% url 'admin-index' %}" class="logo">
+                <a href="index.html" class="logo">
                     <img src="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}" alt="ElectroShop Admin">
                 </a>
                 <a class="nav-link" id="home-tab" data-bs-toggle="tab" href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
@@ -103,10 +101,10 @@
                                     <a href="{% url 'admin-add-product' %}">Add Product</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'admin-categories-list' %}" class="current-page">Categories List</a>
+                                    <a href="{% url 'admin-categories-list' %}">Categories List</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'admin-add-category' %}">Add Category</a>
+                                    <a href="{% url 'admin-add-category' %}" class="current-page">Add Category</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'admin-reviews-list' %}">Reviews</a>
@@ -262,56 +260,6 @@
                                     Tasks (7/10)
                                 </div>
                                 <div class="customScroll">
-                                    <ul class="activity">
-                                        <li class="activity-list">
-                                            <div class="detail-info">
-                                                <p class="date">Today</p>
-                                                <p class="info">Messages accepted with attachments</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list danger">
-                                            <div class="detail-info">
-                                                <p class="date">Today</p>
-                                                <p class="info">Send email notifications of subscriptions and deletions to list owner</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list success">
-                                            <div class="detail-info">
-                                                <p class="date">Yesterday</p>
-                                                <p class="info">Required change logs activity reports</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list warning">
-                                            <div class="detail-info">
-                                                <p class="date">2 Days Ago</p>
-                                                <p class="info">Strategic partnership plan</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list">
-                                            <div class="detail-info">
-                                                <p class="date">2 days ago</p>
-                                                <p class="info">Send email notifications of subscriptions and deletions to list owner</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list danger">
-                                            <div class="detail-info">
-                                                <p class="date">3 days ago</p>
-                                                <p class="info">Required change logs activity reports</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list success">
-                                            <div class="detail-info">
-                                                <p class="date">7 days ago</p>
-                                                <p class="info">Strategic partnership plan</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list">
-                                            <div class="detail-info">
-                                                <p class="date">2 weeks ago</p>
-                                                <p class="info">Required change logs activity reports</p>
-                                            </div>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </li>
@@ -324,68 +272,6 @@
                                     Notifications (7)
                                 </div>
                                 <div class="customScroll">
-                                    <ul class="header-notifications">
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img online">
-                                                    <img src="img/user6.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Larkyn</div>
-                                                    <div class="noti-details">Check out every table in detail.</div>
-                                                    <div class="noti-date">April 25, 04:00 pm</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img busy">
-                                                    <img src="img/user10.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Braxten</div>
-                                                    <div class="noti-details">Approved new design.</div>
-                                                    <div class="noti-date">April 10, 12:00 am</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img away">
-                                                    <img src="img/user21.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Maria</div>
-                                                    <div class="noti-details">Membership has been ended.</div>
-                                                    <div class="noti-date">March 20, 07:30 pm</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img busy">
-                                                    <img src="img/user15.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Alex</div>
-                                                    <div class="noti-details">Design Review.</div>
-                                                    <div class="noti-date">April 18, 09:30 am</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img online">
-                                                    <img src="img/user5.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Sunny</div>
-                                                    <div class="noti-details">UI Discussion</div>
-                                                    <div class="noti-date">April 21, 05:00 pm</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </li>
@@ -413,59 +299,52 @@
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Edit Category</div>
+                            </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="copy-print-csv" class="table v-middle">
-                                        <thead>
-                                        <tr>
-                                            <th>Categories</th>
-                                            <th>Description</th>
-                                            <th>Is Active?</th>
-                                            <th style="text-align: center">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for category in categories %}
-                                        <tr>
-                                            <td>
-                                                <div class="media-box">
-                                                    <div class="media-box-body">
-                                                        <a href="#" class="text-truncate">{{ category.category_name }}</a>
+                                {% include 'includes/alerts.html' %}
+                                <div id="example-form">
+                                    <form action="{{ category_details.get_edit_url }}" method="POST">
+                                        <h6 class="h-0 m-0">&nbsp;</h6>
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="field-wrapper">
+                                                    <input type="text" placeholder="Enter category name" name="category_name" value="{{ category_details.category_name }}">
+                                                    <div class="field-placeholder">Category Name <span class="text-danger">*</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="field-wrapper mt-4">
+                                                    <input type="text" name="description" value="{{ category_details.description }}" placeholder="Enter category description" />
+                                                    <div class="field-placeholder">Category Description <span class="text-danger">*</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="field-wrapper mt-4">
+                                                    <input type="file" placeholder="Enter category image" name="image" title="Choose image" value="{{ category_details.image.url }}">
+                                                    <div class="field-placeholder">Category Image <span class="text-danger">*</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <div class="field-wrapper mt-4 ml-2">
+                                                            <button type="submit" class="btn btn-success" style="width: 100%"><i class="fa fa-check"></i> Update</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="field-wrapper mt-4 ml-2">
+                                                            <a href="{% url 'admin-categories-list' %}" class="btn btn-danger" style="width: 100%"><i class="fa fa-close"></i> Cancel</a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </td>
-                                            <td>
-                                                <div class="media-box">
-                                                    <div class="rate2">{{ category.description }}</div>
-                                                </div>
-                                            </td>
-                                            <td style="text-align: center">
-                                                  {% if category.is_active is True %}
-                                                    <span class="badge bg-success">Yes</span>
-                                                  {% else %}
-                                                    <span class="badge bg-danger">No</span>
-                                                  {% endif %}
-                                              </td>
-                                            <td>
-                                                <div class="actions">
-                                                    <a href="{{ category.get_edit_url }}" data-toggle="tooltip" data-placement="top" title="Edit" data-original-title="Edit" style="background-color: #21618C">
-                                                        <i class="fa fa-edit text-white"></i>
-                                                    </a>
-                                                    <div style="width: 10px"></div>
-                                                    <a href="{{ category.get_delete_url }}" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete" style="background-color: #F32013">
-                                                        <i class="fa fa-trash text-white"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -481,15 +360,27 @@
 <script src="{% static 'electroshop-admin/vendor/slimscroll/custom-scrollbar.js' %}"></script>
 <script src="{% static 'electroshop-admin/vendor/search-filter/search-filter.js' %}"></script>
 <script src="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/dataTables.min.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/dataTables.bootstrap.min.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/custom/custom-datatables.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/buttons.min.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/jszip.min.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/pdfmake.min.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/vfs_fonts.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/html5.min.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/datatables/buttons.print.min.js' %}"></script>
+<script src="{% static 'electroshop-admin/vendor/bs-select/bs-select.min.js' %}"></script>
+<script src="{% static 'electroshop-admin/vendor/bs-select/bs-select-custom.js' %}"></script>
+<script src="{% static 'electroshop-admin/vendor/dropzone/dropzone.min.js' %}"></script>
+<script src="{% static 'electroshop-admin/vendor/input-tags/tagsinput.min.js' %}"></script>
+<script src="{% static 'electroshop-admin/vendor/input-tags/typeahead.js' %}"></script>
+<script src="{% static 'electroshop-admin/vendor/input-tags/tagsinput-custom.js' %}"></script>
 <script src="{% static 'electroshop-admin/js/main.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            height: 120,
+            tabsize: 2,
+            focus: true,
+            toolbar: [
+                ['font', ['bold', 'underline', 'clear']],
+                ['para', ['ul', 'ol']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+            ]
+        });
+    });
+</script>
 </body>
 </html>

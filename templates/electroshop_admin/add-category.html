@@ -260,56 +260,6 @@
                                     Tasks (7/10)
                                 </div>
                                 <div class="customScroll">
-                                    <ul class="activity">
-                                        <li class="activity-list">
-                                            <div class="detail-info">
-                                                <p class="date">Today</p>
-                                                <p class="info">Messages accepted with attachments</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list danger">
-                                            <div class="detail-info">
-                                                <p class="date">Today</p>
-                                                <p class="info">Send email notifications of subscriptions and deletions to list owner</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list success">
-                                            <div class="detail-info">
-                                                <p class="date">Yesterday</p>
-                                                <p class="info">Required change logs activity reports</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list warning">
-                                            <div class="detail-info">
-                                                <p class="date">2 Days Ago</p>
-                                                <p class="info">Strategic partnership plan</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list">
-                                            <div class="detail-info">
-                                                <p class="date">2 days ago</p>
-                                                <p class="info">Send email notifications of subscriptions and deletions to list owner</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list danger">
-                                            <div class="detail-info">
-                                                <p class="date">3 days ago</p>
-                                                <p class="info">Required change logs activity reports</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list success">
-                                            <div class="detail-info">
-                                                <p class="date">7 days ago</p>
-                                                <p class="info">Strategic partnership plan</p>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list">
-                                            <div class="detail-info">
-                                                <p class="date">2 weeks ago</p>
-                                                <p class="info">Required change logs activity reports</p>
-                                            </div>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </li>
@@ -322,77 +272,15 @@
                                     Notifications (7)
                                 </div>
                                 <div class="customScroll">
-                                    <ul class="header-notifications">
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img online">
-                                                    <img src="img/user6.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Larkyn</div>
-                                                    <div class="noti-details">Check out every table in detail.</div>
-                                                    <div class="noti-date">April 25, 04:00 pm</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img busy">
-                                                    <img src="img/user10.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Braxten</div>
-                                                    <div class="noti-details">Approved new design.</div>
-                                                    <div class="noti-date">April 10, 12:00 am</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img away">
-                                                    <img src="img/user21.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Maria</div>
-                                                    <div class="noti-details">Membership has been ended.</div>
-                                                    <div class="noti-date">March 20, 07:30 pm</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img busy">
-                                                    <img src="img/user15.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Alex</div>
-                                                    <div class="noti-details">Design Review.</div>
-                                                    <div class="noti-date">April 18, 09:30 am</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="user-img online">
-                                                    <img src="img/user5.png" alt="User">
-                                                </div>
-                                                <div class="details">
-                                                    <div class="user-title">Sunny</div>
-                                                    <div class="noti-details">UI Discussion</div>
-                                                    <div class="noti-date">April 21, 05:00 pm</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </li>
                         <li class="dropdown">
                             <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-										<span class="avatar">
-											<img src="{% static 'electroshop-admin/img/user.svg' %}" alt="User Avatar">
-											<span class="status busy"></span>
-										</span>
+                                <span class="avatar">
+                                    <img src="{% static 'electroshop-admin/img/user.svg' %}" alt="User Avatar">
+                                    <span class="status busy"></span>
+                                </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end md" aria-labelledby="userSettings">
                                 <div class="header-profile-actions">
@@ -415,53 +303,45 @@
                                 <div class="card-title">Add New Category</div>
                             </div>
                             <div class="card-body">
+                                {% include 'includes/alerts.html' %}
                                 <div id="example-form">
-                                    <h3>General Information</h3>
-                                    <section>
+                                    <form action="{% url 'admin-add-category' %}" method="POST">
                                         <h6 class="h-0 m-0">&nbsp;</h6>
                                         <div class="row gutters">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="field-wrapper">
-                                                    <input type="text" placeholder="Enter category Name">
+                                                    <input type="text" placeholder="Enter category name" name="category_name">
                                                     <div class="field-placeholder">Category Name <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="field-wrapper m-0">
-                                                    <div class="summernote"></div>
+                                                <div class="field-wrapper mt-4">
+                                                    <textarea name="description" rows="5" placeholder="Enter category description"></textarea>
                                                     <div class="field-placeholder">Category Description <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </section>
-                                    <h3>Category Images</h3>
-                                    <section>
-                                        <h6 class="h-0 m-0">&nbsp;</h6>
-                                        <div class="row gutters">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div id="dropzone">
-                                                    <form action="/upload" class="dropzone needsclick dz-clickable" id="demo-upload">
-                                                        <div class="dz-message needsclick">
-                                                            <button type="button" class="dz-button">Drop files here or click to upload.</button><br>
-                                                            <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                                                <div class="field-wrapper mt-4">
+                                                    <input type="file" placeholder="Enter category image" name="image" title="Choose image">
+                                                    <div class="field-placeholder">Category Image <span class="text-danger">*</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <div class="field-wrapper mt-4 ml-2">
+                                                            <button type="submit" class="btn btn-success" style="width: 100%"><i class="fa fa-check"></i> Add</button>
                                                         </div>
-                                                    </form>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="field-wrapper mt-4 ml-2">
+                                                            <a href="{% url 'admin-categories-list' %}" class="btn btn-danger" style="width: 100%"><i class="fa fa-close"></i> Cancel</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </section>
-                                    <h3>Confirmation</h3>
-                                    <section>
-                                        <h6 class="h-0 m-0">&nbsp;</h6>
-                                        <div class="row gutters">
-                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                                <div class="field-wrapper">
-                                                    <input type="hidden" placeholder="Confirm Category">
-                                                    <div class="field-placeholder">Are you sure you want to add this category?<span class="text-danger">*</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -480,9 +360,6 @@
 <script src="{% static 'electroshop-admin/vendor/slimscroll/custom-scrollbar.js' %}"></script>
 <script src="{% static 'electroshop-admin/vendor/search-filter/search-filter.js' %}"></script>
 <script src="{% static 'electroshop-admin/vendor/search-filter/custom-search-filter.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/wizard/jquery.steps.min.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/wizard/jquery.steps.custom.js' %}"></script>
-<script src="{% static 'electroshop-admin/vendor/summernote/summernote-bs4.js' %}"></script>
 <script src="{% static 'electroshop-admin/vendor/bs-select/bs-select.min.js' %}"></script>
 <script src="{% static 'electroshop-admin/vendor/bs-select/bs-select-custom.js' %}"></script>
 <script src="{% static 'electroshop-admin/vendor/dropzone/dropzone.min.js' %}"></script>

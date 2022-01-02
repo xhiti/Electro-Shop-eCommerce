@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from store.models import Product, ReviewRating, PrdouctGallery
+from django.template import loader
+from django.template.loader import get_template
 from category.models import Category
 from carts.views import _cart_id
 from django.http import HttpResponse
@@ -136,14 +138,26 @@ def submit_review(request, product_id):
     return
 
 
-    def delete_category(request, pk):
-        return
+def product_xml_report(request):
+    products = Product.objects.filter(is_available=True).order_by('product_name')
+    template = loader.get_template('xml/products.xml')
+    context = {
+        'products': products
+    }
+    return HttpResponse(template.render(context))
 
-    def edit_category(request, pk):
-        return
 
-    def edit_product(request, pk):
-        return
+def delete_category(request, pk):
+    return
 
-    def delete_product(request, pk):
-        return
+
+def edit_category(request, pk):
+    return
+
+
+def edit_product(request, pk):
+    return
+
+
+def delete_product(request, pk):
+    return

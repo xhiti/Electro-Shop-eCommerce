@@ -179,3 +179,7 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 // 	jQuery(this).tab('show');
 // 	jQuery(tabContentSelector).addClass('active');
 // });
+
+setTimeout(function () {
+    $('#messages').fadeOut('slow')
+}, 5000)

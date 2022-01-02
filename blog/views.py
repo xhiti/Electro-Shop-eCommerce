@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .models import Blog
 
 
@@ -13,6 +14,7 @@ def blog(request):
     return render(request, 'blog.html', context)
 
 
+@login_required(login_url='login')
 def edit_blog(request):
     blogs = Blog.objects.order_by('-created_date').filter(is_active=True)
 
@@ -23,6 +25,7 @@ def edit_blog(request):
     return render(request, 'blog.html', context)
 
 
+@login_required(login_url='login')
 def delete_blog(request):
     blogs = Blog.objects.order_by('-created_date').filter(is_active=True)
 

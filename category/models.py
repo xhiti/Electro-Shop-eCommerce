@@ -18,10 +18,10 @@ class Category(models.Model):
         return reverse('products_by_category', args=[self.slug])
 
     def get_edit_url(self):
-        return reverse('edit-category', args=[str(self.id)])
+        return reverse('admin-edit-category', args=[self.slug])
 
     def get_delete_url(self):
-        return reverse('delete-category', args=[str(self.id)])
+        return reverse('admin-delete-category', args=[self.slug])
 
     def __str__(self):
         return self.category_name

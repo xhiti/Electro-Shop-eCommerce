@@ -40,8 +40,13 @@ urlpatterns = [
     path('electroshop-admin/dashboard', views.admin_index, name='admin-index'),
     path('electroshop-admin/analytics', views.admin_analytics, name='admin-analytics'),
     path('electroshop-admin/sales', views.admin_sales, name='admin-sales'),
+
     path('electroshop-admin/products', views.admin_product_list, name='admin-products-list'),
+
     path('electroshop-admin/categories', views.admin_categories_list, name='admin-categories-list'),
+    path('electroshop-admin/categories/edit/<slug:category_slug>/', views.edit_category, name='admin-edit-category'),
+    path('electroshop-admin/categories/delete/<slug:category_slug>/', views.delete_category, name='admin-delete-category'),
+
     path('electroshop-admin/reviews', views.admin_reviews_list, name='admin-reviews-list'),
     path('electroshop-admin/orders', views.admin_orders_list, name='admin-orders-list'),
     path('electroshop-admin/customers', views.admin_customer_list, name='admin-customers-list'),

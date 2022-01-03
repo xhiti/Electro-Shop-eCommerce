@@ -350,23 +350,23 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">Add New Post</div>
+                                <div class="card-title">Edit Post</div>
                             </div>
                             <div class="card-body">
                                 {% include 'includes/alerts.html' %}
                                 <div id="example-form">
-                                    <form action="{% url 'admin-add-post' %}" method="POST">
+                                    <form action="{{ post_details.get_edit_url }}" method="POST">
                                         <h6 class="h-0 m-0">&nbsp;</h6>
                                         <div class="row gutters">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="field-wrapper">
-                                                    <input type="text" placeholder="Enter post title" name="title">
+                                                    <input type="text" placeholder="Enter post title" name="title" value="{{ post_details.title }}">
                                                     <div class="field-placeholder">Post Title <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="field-wrapper mt-4">
-                                                    <textarea name="description" rows="5" placeholder="Enter post description"></textarea>
+                                                    <input type="text" name="description" placeholder="Enter post description" value="{{ post_details.description }}"/>
                                                     <div class="field-placeholder">Post Description <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>

@@ -33,3 +33,9 @@ urllib3==1.25.11
 virtualenv==20.7.2
 wcwidth==0.1.9
 zipp==3.5.0
+
+reportlab~=3.6.5
+pip~=21.2.4
+cryptography~=2.7
+py~=1.10.0
+setuptools~=41.2.0

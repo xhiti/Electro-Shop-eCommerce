@@ -319,68 +319,6 @@
 											Notifications (7)
 										</div>
 										<div class="customScroll">
-											<ul class="header-notifications">
-												<li>
-													<a href="#">
-														<div class="user-img online">
-															<img src="img/user6.png" alt="User">
-														</div>
-														<div class="details">
-															<div class="user-title">Larkyn</div>
-															<div class="noti-details">Check out every table in detail.</div>
-															<div class="noti-date">April 25, 04:00 pm</div>
-														</div>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<div class="user-img busy">
-															<img src="img/user10.png" alt="User">
-														</div>
-														<div class="details">
-															<div class="user-title">Braxten</div>
-															<div class="noti-details">Approved new design.</div>
-															<div class="noti-date">April 10, 12:00 am</div>
-														</div>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<div class="user-img away">
-															<img src="img/user21.png" alt="User">
-														</div>
-														<div class="details">
-															<div class="user-title">Maria</div>
-															<div class="noti-details">Membership has been ended.</div>
-															<div class="noti-date">March 20, 07:30 pm</div>
-														</div>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<div class="user-img busy">
-															<img src="img/user15.png" alt="User">
-														</div>
-														<div class="details">
-															<div class="user-title">Alex</div>
-															<div class="noti-details">Design Review.</div>
-															<div class="noti-date">April 18, 09:30 am</div>
-														</div>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<div class="user-img online">
-															<img src="img/user5.png" alt="User">
-														</div>
-														<div class="details">
-															<div class="user-title">Sunny</div>
-															<div class="noti-details">UI Discussion</div>
-															<div class="noti-date">April 21, 05:00 pm</div>
-														</div>
-													</a>
-												</li>
-											</ul>
 										</div>
 									</div>
 								</li>
@@ -409,40 +347,25 @@
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<div class="card">
 									<div class="card-header-lg">
-										<h4>Create Invoice</h4>
+										<h4>View Invoice</h4>
 										<div class="text-end">
-											<a href="{% url 'admin-create-invoice' %}" class="btn btn-primary">Create Invoice</a>
+											<a href="{{ order_details.get_info_details_url }}" class="btn btn-primary">Order number: {{ order_details.order_number }}</a>
 										</div>
 									</div>
 									<div class="card-body">
                                         <div class="invoice-container">
-                                            <div class="invoice-header">
-                                                <div class="row justify-content-between">
-                                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
-                                                        <a href="index.html" class="invoice-logo">
-                                                            <img src="{% static 'electroshop-admin/img/electroshop-admin-logo.png' %}" alt="ElectroShop Admin Dashboard">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
-                                                        <address class="text-right">
-                                                            Meow LLC, 2880 St. <br>
-                                                            Rose Pkwy, Suite 700<br>
-                                                            San Francisco, California(CA), 94102
-                                                        </address>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="row gutters">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                     <div class="invoice-details">
-                                                        <address class="m-0">
-                                                            Alex Maxwell,<br>
-                                                            1691 Oakdale Ave,<br>
-                                                            San Francisco, California(CA), 94124
+                                                        <address class="text-right">
+                                                            {{ order_details.full_name }}<br>
+                                                            {{ order_details.full_address }}<br>
+                                                            {{ order_details.city }}
                                                         </address>
                                                         <div class="invoice-num">
-                                                            <div>Invoice - #009</div>
-                                                            <div>January 10th 2020</div>
+                                                            <div>Invoice - #{{ order_details.order_number }}</div>
+                                                            <div>{{ order_details.created_at }}</div>
+                                                            <div>Payment: {{ order_details.payment.payment_id }}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -456,54 +379,39 @@
 																<tr>
 																	<th>Items</th>
 																	<th>Product ID</th>
-																	<th>Hours</th>
+																	<th>Quantity</th>
 																	<th>Amount (Net)</th>
 																</tr>
 															</thead>
 															<tbody>
+                                                                {% for item in order_details_items %}
 																<tr>
 																	<td>
-																		<h6>Creative Wordpress Template</h6>
-																		<p>Create quality mockups and prototypes and Design mobile-based features.</p>
+																		<h6>{{ item.product.product_name }}</h6>
+																		<p>{{ item.product.product_description}}</p>
 																	</td>
 																	<td>
-																		<h6>#651</h6>
+																		<h6>{{ item.product.product_description }}</h6>
 																	</td>
 																	<td>
-																		<h6>40</h6>
+																		<h6>x{{ item.quantity }}</h6>
 																	</td>
 																	<td>
-																		<h6>$450.00</h6>
+																		<h6>${{ item.product_price }}</h6>
 																	</td>
 																</tr>
-																<tr>
-																	<td>
-																		<h6>Front-End Development</h6>
-																		<p>Using markup languages like HTML to create user-friendly web pages.</p>
-																	</td>
-																	<td>
-																		<h6>#429</h6>
-																	</td>
-																	<td>
-																		<h6>60</h6>
-																	</td>
-																	<td>
-																		<h6>$550.00</h6>
-																	</td>
-																</tr>
+                                                                {% endfor %}
 																<tr>
 																	<td colspan="2">&nbsp;</td>
 																	<td>
-																		<p class="m-0">Subtotal</p>
-																		<p class="m-0">Discount</p>
-																		<p class="m-0">VAT</p>
+																		<p class="m-0">Sub Total</p>
+																		<p class="m-0">Tax</p>
 																		<h5 class="mt-2 text-danger">Total USD</h5>
 																	</td>
 																	<td>
-																		<p class="m-0">$1000.00</p>
-																		<p class="m-0">$10.00</p>
-																		<p class="m-0">$5.00</p>
-																		<h5 class="mt-2 text-danger">$1015.00</h5>
+																		<p class="m-0">${{ sub_total }}</p>
+																		<p class="m-0">${{ order_details.tax }}</p>
+																		<h5 class="mt-2 text-danger">${{ order_details.order_total }}</h5>
 																	</td>
 																</tr>
 															</tbody>
@@ -514,8 +422,10 @@
                                             <div class="row gutters">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                     <div class="text-start">
-                                                        <button class="btn btn-primary">Download</button>
-                                                        <button class="btn btn-light ms-1">Print</button>
+                                                        {% if order_details.is_ordered is True %}
+                                                            <a href="{{ order_details.print_invoice }}" class="btn btn-primary">Download</a>
+                                                        {% endif %}
+                                                        {# <button class="btn btn-light ms-1">Print</button> #}
                                                     </div>
                                                 </div>
                                             </div>

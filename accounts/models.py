@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
@@ -62,6 +63,9 @@ class Account(AbstractBaseUser):
 
     objects = MyAccountManager()
 
+    def get_delete_url(self):
+        return reverse('admin-delete-customer', args=[str(self.id)])
+
     def __str__(self):
         return self.email
 
@@ -89,9 +93,6 @@ class UserProfile(models.Model):
 
     def full_address(self):
         return f'{self.address_line_1} {self.address_line_2}'
-
-    def get_delete_url(self):
-        return reverse('delete-customer', args=[str(self.id)])
 
 
 class Log(models.Model):

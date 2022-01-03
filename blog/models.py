@@ -1,11 +1,12 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
 class Blog(models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=1000, unique=True)
-    blog_image = models.ImageField(upload_to='photos/blog/', blank=True)
+    blog_image = models.ImageField(upload_to='photos/blog/', default='', blank=True)
     is_active = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
@@ -18,7 +19,7 @@ class Blog(models.Model):
         return self.title
 
     def get_edit_url(self):
-        return reverse('edit-post', args=[str(self.id)])
+        return reverse('admin-edit-post', args=[str(self.id)])
 
     def get_delete_url(self):
-        return reverse('delete-post', args=[str(self.id)])
+        return reverse('admin-delete-post', args=[str(self.id)])

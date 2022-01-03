@@ -4,9 +4,10 @@ from django.contrib import messages, auth
 from store.models import Product
 from category.models import Category
 from store.models import ReviewRating
-from orders.models import Order
+from orders.models import Order, OrderProduct
 from accounts.models import UserProfile, Account
 from blog.models import Blog
+from store.helpers.invoicePrinter import InvoicePrinter
 
 
 def index(request):
@@ -50,7 +51,7 @@ def contact(request):
     return render(request, 'contact.html')
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_index(request):
     no_products = Product.objects.all().count()
     no_orders = Order.objects.all().count()
@@ -66,7 +67,7 @@ def admin_index(request):
     return render(request, 'electroshop_admin/index.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_analytics(request):
     no_products = Product.objects.all().count()
     no_orders = Order.objects.all().count()
@@ -91,7 +92,7 @@ def admin_analytics(request):
     return render(request, 'electroshop_admin/analytics.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_sales(request):
     no_products = Product.objects.all().count()
     no_orders = Order.objects.all().count()
@@ -116,7 +117,7 @@ def admin_sales(request):
     return render(request, 'electroshop_admin/sales.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_product_list(request):
     products = Product.objects.all().filter(is_available=True)
     context = {
@@ -125,7 +126,7 @@ def admin_product_list(request):
     return render(request, 'electroshop_admin/products-list.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_add_product(request):
     products = Product.objects.all().filter(is_available=True)
     categories = Category.objects.all().filter(is_active=True)
@@ -136,7 +137,7 @@ def admin_add_product(request):
     return render(request, 'electroshop_admin/add-product.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_categories_list(request):
     categories = Category.objects.all()
     context = {
@@ -145,7 +146,7 @@ def admin_categories_list(request):
     return render(request, 'electroshop_admin/categories-list.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_add_category(request):
     if request.method == 'POST':
         category_name = request.POST['category_name']
@@ -182,8 +183,8 @@ def admin_add_category(request):
     return render(request, 'electroshop_admin/add-category.html')
 
 
+@login_required(login_url='login')
 def edit_category(request, category_slug=None):
-
     category_details = Category.objects.filter(slug=category_slug, is_active=True).first()
 
     context = {
@@ -201,7 +202,7 @@ def edit_category(request, category_slug=None):
             slug = str(category_name).lower().replace(" ", "-")
 
         description = request.POST['description']
-        if category_name is None or category_name == "":
+        if description is None or description == "":
             description = str(description + "")
         else:
             description = str(description).capitalize()
@@ -229,6 +230,7 @@ def edit_category(request, category_slug=None):
     return render(request, 'electroshop_admin/edit-category.html', context)
 
 
+@login_required(login_url='login')
 def delete_category(request, category_slug=None):
     if category_slug is not None:
         Category.objects.filter(slug=category_slug, is_active=True).delete()
@@ -237,7 +239,7 @@ def delete_category(request, category_slug=None):
     return render(request, 'electroshop_admin/categories-list.html')
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_reviews_list(request):
     reviews = ReviewRating.objects.all()
     context = {
@@ -246,20 +248,16 @@ def admin_reviews_list(request):
     return render(request, 'electroshop_admin/products-reviews.html', context)
 
 
-# @login_required(login_url='login')
-def admin_orders_list(request):
-    orders = Order.objects.filter().order_by('-created_at')
-    no_products = Product.objects.all().count()
-    no_orders = Order.objects.all().count()
-    context = {
-        'orders': orders,
-        'no_products': no_products,
-        'no_orders': no_orders
-    }
-    return render(request, 'electroshop_admin/orders-list.html', context)
+@login_required(login_url='login')
+def delete_review(request, pk=None):
+    if pk is not None:
+        ReviewRating.objects.filter(id=pk).delete()
+        messages.success(request, "Review deleted successfully!")
+        return redirect('admin-reviews-list')
+    return render(request, 'electroshop_admin/products-reviews-list.html')
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_customer_list(request):
     customers = Account.objects.filter(is_admin=False, is_super_admin=False)
     no_products = Product.objects.all().count()
@@ -272,7 +270,16 @@ def admin_customer_list(request):
     return render(request, 'electroshop_admin/customers-list.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
+def delete_customer(request, pk=None):
+    if pk is not None:
+        Account.objects.filter(id=pk).delete()
+        messages.success(request, "Customer deleted successfully!")
+        return redirect('admin-customers-list')
+    return render(request, 'electroshop_admin/customers-list.html')
+
+
+@login_required(login_url='login')
 def admin_posts_list(request):
     posts = Blog.objects.all().filter(is_active=True)
     no_products = Product.objects.all().count()
@@ -285,18 +292,98 @@ def admin_posts_list(request):
     return render(request, 'electroshop_admin/posts-list.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_add_post(request):
-    post = Blog.objects.all().filter(is_active=True)
+    if request.method == 'POST':
+        title = request.POST['title']
+        if title is None or title == "":
+            messages.error(request, "Post title name can't be blank!")
+        else:
+            title = str(title).capitalize()
+            slug = str(title).lower().replace(" ", "-")
+
+        description = request.POST['description']
+        if description is None or description == "":
+            description = str(description + "")
+        else:
+            description = str(description).capitalize()
+
+        image = request.POST['image']
+        if image is None or image == "":
+            image = image
+        else:
+            image = image
+
+        counter = Blog.objects.filter(title=title, is_active=True).count()
+        if counter > 0:
+            messages.error(request, "Post exists!")
+        else:
+            print("Blog created!!")
+            Blog.objects.create(
+                title=title,
+                description=description,
+                blog_image=image,
+                is_active=True
+            )
+            messages.success(request, "Post added successfully!")
+            return redirect('admin-posts-list')
+    return render(request, 'electroshop_admin/add-post.html')
+
+
+@login_required(login_url='login')
+def admin_edit_post(request, pk=None):
+    post_details = Blog.objects.filter(id=pk, is_active=True).first()
+
     context = {
-        'post': post
+        'post_details': post_details
     }
-    return render(request, 'electroshop_admin/add-post.html', context)
+
+    if request.method == 'POST':
+        title = request.POST['title']
+        if title is None or v == "":
+            messages.error(request, "Post title can't be blank!")
+        else:
+            title = str(title).capitalize()
+
+        description = request.POST['description']
+        if description is None or description == "":
+            description = str(description + "")
+        else:
+            description = str(description).capitalize()
+
+        image = request.POST['image']
+        if image is None or image == "":
+            image = image
+        else:
+            image = image
+
+        counter = Blog.objects.filter(title=title, is_active=True).exclude(id=pk).count()
+        if counter > 0:
+            messages.error(request, "Post exists!")
+        else:
+            Blog.objects.filter(
+                id=pk
+            ).update(
+                title=title,
+                description=description,
+                blog_image=image
+            )
+            messages.success(request, "Post updated successfully!")
+            return redirect('admin-posts-list')
+    return render(request, 'electroshop_admin/edit-post.html', context)
 
 
-# @login_required(login_url='login')
-def admin_view_invoice(request):
-    orders = Order.objects.filter().order_by('-created_at')
+def admin_delete_post(request, pk=None):
+    if pk is not None:
+        Blog.objects.filter(id=pk).delete()
+        messages.success(request, "Post deleted successfully!")
+        return redirect('admin-posts-list')
+    return render(request, 'electroshop_admin/posts-list.html')
+
+
+@login_required(login_url='login')
+def admin_orders_list(request):
+    orders = Order.objects.all().order_by('-created_at')
     no_products = Product.objects.all().count()
     no_orders = Order.objects.all().count()
     context = {
@@ -304,40 +391,57 @@ def admin_view_invoice(request):
         'no_products': no_products,
         'no_orders': no_orders
     }
+    return render(request, 'electroshop_admin/orders-list.html', context)
+
+
+@login_required(login_url='login')
+def admin_view_invoice(request, order_number=None):
+    if order_number is not None:
+        order_details = Order.objects.filter(order_number=order_number).first()
+        order_details_items = OrderProduct.objects.filter(order__order_number=order_number)
+
+        sub_total = 0
+
+        for i in order_details_items:
+            sub_total += i.product_price * i.quantity
+
+        context = {
+            'order_details': order_details,
+            'order_details_items': order_details_items,
+            'sub_total': sub_total
+        }
     return render(request, 'electroshop_admin/view-invoice.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
+def admin_print_invoice(request, order_number=None):
+    if order_number is not None:
+        order_details = Order.objects.filter(order_number=order_number).first()
+        order_details_items = OrderProduct.objects.filter(order__order_number=order_number)
+
+        sub_total = 0
+
+        for i in order_details_items:
+            sub_total += i.product_price * i.quantity
+
+        return InvoicePrinter.printInvoice(order_details, order_details_items, sub_total)
+
+
+@login_required(login_url='login')
 def admin_create_invoice(request):
-    orders = Order.objects.filter().order_by('-created_at')
-    no_products = Product.objects.all().count()
-    no_orders = Order.objects.all().count()
-    context = {
-        'orders': orders,
-        'no_products': no_products,
-        'no_orders': no_orders
-    }
-    return render(request, 'electroshop_admin/create-invoice.html', context)
+    return render(request, 'electroshop_admin/create-invoice.html')
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_user_profile(request):
-    orders = Order.objects.filter().order_by('-created_at')
-    no_products = Product.objects.all().count()
-    no_orders = Order.objects.all().count()
-    context = {
-        'orders': orders,
-        'no_products': no_products,
-        'no_orders': no_orders
-    }
-    return render(request, 'electroshop_admin/maintenance.html', context)
+    return render(request, 'electroshop_admin/maintenance.html')
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_error(request):
     return render(request, 'electroshop_admin/error.html')
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def admin_maintenance(request):
     return render(request, 'electroshop_admin/maintenance.html')

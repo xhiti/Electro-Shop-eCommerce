@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from accounts.models import Account
 from store.models import Product
 
@@ -45,6 +46,12 @@ class Order(models.Model):
     is_ordered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_info_details_url(self):
+        return reverse('admin-order-details', args=[str(self.order_number)])
+
+    def print_invoice(self):
+        return reverse('admin-print-invoice', args=[str(self.order_number)])
 
     def full_name(self):
         return f'{self.first_name} {self.last_name}'

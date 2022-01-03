@@ -434,7 +434,7 @@
 											<td>
 												<div class="media-box">
 													<div class="media-box-body">
-														<a href="#" class="text-truncate">{{ order.order_number }}</a>
+														<a href="{{ order.get_info_details_url }}" class="text-truncate">{{ order.order_number }}</a>
 													</div>
 												</div>
 											</td>
@@ -447,10 +447,14 @@
 												{{ order.created_at }}
 											</td>
 											<td>{{ order.country }}</td>
-											<td>{{ order.payment.amount_paid}}$</td>
+											<td>{{ order.order_total }}$</td>
 											<td>{{ order.tax }}$</td>
 											<td>
-												<span class="badge bg-success">{{ order.status }}</span>
+                                                {% if order.is_ordered is True %}
+                                                    <span class="badge bg-success"><i class="fa fa-check"></i> Ordered</span>
+                                                {% else %}
+                                                    <span class="badge bg-danger"><i class="fa fa-close"></i> Ordered</span>
+                                                {% endif %}
 											</td>
 {#											<td style="text-align: center">#}
 {#												<div class="actions">#}

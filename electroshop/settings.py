@@ -93,13 +93,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    "electroshop_database": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "electroshop",
-        "USER": "postgres",
-        "PASSWORD": "mexhitkurti2717",
-        "PORT": "5432"
-    },
+    # "electroshop_database": {
+    #     "ENGINE": "django.db.backends.postgresql_psycopg2",
+    #     "NAME": "electroshop",
+    #     "USER": "postgres",
+    #     "PASSWORD": "mexhitkurti2717",
+    #     "PORT": "5432"
+    # },
 }
 
 

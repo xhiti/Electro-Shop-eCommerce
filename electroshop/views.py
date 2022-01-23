@@ -134,7 +134,155 @@ def admin_add_product(request):
         'products': products,
         'categories': categories
     }
+
+    if request.method == 'POST':
+        product_name = request.POST['product_name']
+        if product_name is None or product_name == "":
+            messages.error(request, "Product name can't be blank!")
+        else:
+            product_name = str(product_name).capitalize()
+            slug = str(product_name).lower().replace(" ", "-")
+            print("Product Name: " + str(product_name))
+            print("Product Slug: " + str(slug))
+
+        price = request.POST['price']
+        if price is None or price == "":
+            messages.error(request, "Product price can't be blank!")
+        else:
+            price = int(price)
+            print("Product Price: " + str(price))
+
+        category_name = request.POST['category_name']
+        if category_name is None or category_name == "" or category_name == "0":
+            messages.error(request, "Category can't be blank!")
+        else:
+            category_name = category_name
+            print("Category ID: " + str(category_name))
+
+        stock = request.POST['stock']
+        if stock is None or stock == "":
+            messages.error(request, "Product stock can't be blank!")
+        else:
+            stock = int(price)
+            print("Product Stock: " + str(stock))
+
+        decription = request.POST['description']
+        if decription is None or decription == "":
+            decription = decription
+        else:
+            decription = decription
+            print("Product Description: " + str(decription))
+
+        image = request.POST['image']
+        if image is None or image == "":
+            image = image
+        else:
+            image = image
+
+        counter = Product.objects.filter(product_name=product_name, slug=slug, is_available=True).count()
+        if counter > 0:
+            messages.error(request, "Product exists!")
+        else:
+            Product.objects.create(
+                product_name=product_name,
+                slug=slug,
+                product_description=decription,
+                price=price,
+                stock=stock,
+                image=image,
+                category=get_object_or_404(Category, id=category_name)
+            )
+            messages.success(request, "Product added successfully!")
+            return redirect('admin-products-list')
     return render(request, 'electroshop_admin/add-product.html', context)
+
+
+@login_required(login_url='login')
+def admin_edit_product(request, product_slug=None):
+    product_details = Product.objects.filter(id=product_slug, is_available=True).first()
+
+    products = Product.objects.all().filter(is_available=True)
+    categories = Category.objects.all().filter(is_active=True)
+    context = {
+        'products': products,
+        'categories': categories,
+        'product_details': product_details
+    }
+
+    current_slug = product_details.slug
+
+    if request.method == 'POST':
+        product_name = request.POST['product_name']
+        if product_name is None or product_name == "":
+            messages.error(request, "Product name can't be blank!")
+        else:
+            product_name = str(product_name).capitalize()
+            slug = str(product_name).lower().replace(" ", "-")
+            print("Product Name: " + str(product_name))
+            print("Product Slug: " + str(slug))
+
+        price = request.POST['price']
+        if price is None or price == "":
+            messages.error(request, "Product price can't be blank!")
+        else:
+            price = int(price)
+            print("Product Price: " + str(price))
+
+        category_name = request.POST['category_name']
+        if category_name is None or category_name == "" or category_name == "0":
+            messages.error(request, "Category can't be blank!")
+        else:
+            category_name = category_name
+            print("Category ID: " + str(category_name))
+
+        stock = request.POST['stock']
+        if stock is None or stock == "":
+            messages.error(request, "Product stock can't be blank!")
+        else:
+            stock = int(price)
+            print("Product Stock: " + str(stock))
+
+        decription = request.POST['description']
+        if decription is None or decription == "":
+            decription = decription
+        else:
+            decription = decription
+            print("Product Description: " + str(decription))
+
+        image = request.POST['image']
+        if image is None or image == "":
+            image = image
+        else:
+            image = image
+
+        counter = Product.objects.filter(product_name=product_name, is_available=True).exclude(
+            id=product_slug).count()
+        if counter > 0:
+            messages.error(request, "Product exists!")
+        else:
+            Product.objects.filter(
+                slug=current_slug
+            ).update(
+                product_name=product_name,
+                slug=slug,
+                product_description=decription,
+                price=price,
+                stock=stock,
+                image=image,
+                category=get_object_or_404(Category, id=category_name)
+            )
+            messages.success(request, "Product edited successfully!")
+            return redirect('admin-products-list')
+    return render(request, 'electroshop_admin/edit-product.html', context)
+
+
+@login_required(login_url='login')
+def delete_product(request, product_slug=None):
+    if product_slug is not None:
+        Product.objects.filter(id=product_slug, is_available=True).delete()
+        messages.success(request, "Product deleted successfully!")
+        return redirect('admin-products-list')
+    return render(request, 'electroshop_admin/products-list.html')
 
 
 @login_required(login_url='login')
@@ -294,6 +442,9 @@ def admin_posts_list(request):
 
 @login_required(login_url='login')
 def admin_add_post(request):
+
+    categories = Category.objects.all().filter(is_active=True)
+
     if request.method == 'POST':
         title = request.POST['title']
         if title is None or title == "":
@@ -327,7 +478,12 @@ def admin_add_post(request):
             )
             messages.success(request, "Post added successfully!")
             return redirect('admin-posts-list')
-    return render(request, 'electroshop_admin/add-post.html')
+
+    context = {
+        'categories': categories
+    }
+
+    return render(request, 'electroshop_admin/add-post.html', context)
 
 
 @login_required(login_url='login')
@@ -396,6 +552,11 @@ def admin_orders_list(request):
 
 @login_required(login_url='login')
 def admin_view_invoice(request, order_number=None):
+
+    context = {
+
+    }
+
     if order_number is not None:
         order_details = Order.objects.filter(order_number=order_number).first()
         order_details_items = OrderProduct.objects.filter(order__order_number=order_number)

@@ -11,7 +11,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     product_description = models.TextField(max_length=500, blank=True)
     price = models.IntegerField()
-    image = models.ImageField(upload_to='photos/products')
+    image = models.ImageField(upload_to='photos/products', default='photos/products/no_img_avaliable.jpg', blank=True)
     stock = models.IntegerField()
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -43,10 +43,10 @@ class Product(models.Model):
         return reverse('product_detail', args=[self.category.slug, self.slug])
 
     def get_edit_url(self):
-        return reverse('edit-product', args=[str(self.id)])
+        return reverse('admin-edit-product', args=[str(self.id)])
 
     def get_delete_url(self):
-        return reverse('delete-product', args=[str(self.id)])
+        return reverse('admin-delete-product', args=[str(self.id)])
 
 
 class VariationManager(models.Manager):
@@ -105,5 +105,3 @@ class PrdouctGallery(models.Model):
 
     def __str__(self):
         return self.product.product_name
-
-

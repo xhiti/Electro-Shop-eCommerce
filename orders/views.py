@@ -112,6 +112,7 @@ def place_order(request, total=0, quantity=0,):
             data.tax = tax
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
+            print("Data: " + str(data))
 
             # Generate order number
             yr = int(datetime.date.today().strftime('%Y'))

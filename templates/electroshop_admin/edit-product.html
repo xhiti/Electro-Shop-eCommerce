@@ -412,29 +412,29 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">Add New Product</div>
+                                <div class="card-title">Edit Product</div>
                             </div>
                             <div class="card-body">
                                 {% include 'includes/alerts.html' %}
                                 <div id="example-form">
-                                    <form action="{% url 'admin-add-product' %}" method="POST">
+                                    <form action="{{ product_details.get_edit_url }}" method="POST">
                                         <h6 class="h-0 m-0">&nbsp;</h6>
                                         <div class="row gutters">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="field-wrapper">
-                                                    <input type="text" placeholder="Enter product name" name="product_name">
+                                                    <input type="text" value="{{ product_details.product_name }}" name="product_name">
                                                     <div class="field-placeholder">Product Name <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
                                                 <div class="field-wrapper mt-4">
-                                                    <input type="text" placeholder="Enter product price" name="price" title="Choose image">
+                                                    <input type="text" value="{{ product_details.price }}" name="price">
                                                     <div class="field-placeholder">Product Price <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
                                                 <div class="field-wrapper mt-4">
-                                                    <input type="text" placeholder="Enter product stock" name="stock" title="Choose image">
+                                                    <input type="text" value="{{ product_details.stock }}" name="stock" title="Choose image">
                                                     <div class="field-placeholder">Product Stock <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>
@@ -443,7 +443,7 @@
                                                     <select name="category_name">
                                                         <option value="0">Choose product category</option>
                                                         {% for category in categories %}
-                                                        <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                        <option value="{{ category.id }}" {% if product_details.category.id == product_details.category.id %} selected {% endif %}>{{ category.category_name }}</option>
                                                         {% endfor %}
                                                     </select>
                                                     <div class="field-placeholder">Product Category <span class="text-danger">*</span></div>
@@ -451,13 +451,13 @@
                                             </div>
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="field-wrapper mt-4">
-                                                    <input type="file" placeholder="Enter product image" name="image" title="Choose image">
+                                                    <input type="file" value="{{ product_details.image }}" name="image" title="Choose image">
                                                     <div class="field-placeholder">Category Image <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="field-wrapper mt-4">
-                                                    <textarea name="description" rows="5" placeholder="Enter product description"></textarea>
+                                                    <textarea name="description" rows="5" value="{{ product_details.description }}"></textarea>
                                                     <div class="field-placeholder">Category Description <span class="text-danger">*</span></div>
                                                 </div>
                                             </div>
@@ -465,7 +465,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-2">
                                                         <div class="field-wrapper mt-4 ml-2">
-                                                            <button type="submit" class="btn btn-success" style="width: 100%"><i class="fa fa-check"></i> Add</button>
+                                                            <button type="submit" class="btn btn-success" style="width: 100%"><i class="fa fa-check"></i> Edit</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2">

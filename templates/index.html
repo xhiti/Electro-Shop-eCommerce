@@ -87,7 +87,11 @@
                                 <div class="ps-section__product">
                                     <div class="ps-product ps-product--standard">
                                         <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ product.get_url }}">
-                                                <figure><img src="{{ product.image.url }}" alt="alt" /><img src="{{ product.image.url }}" alt="alt" />
+                                                <figure>
+                                                    {% if product.image %}
+                                                    <img src="{{ product.image.url }}" alt="alt" />
+                                                    <img src="{{ product.image.url }}" alt="alt" />
+                                                    {% endif %}
                                                 </figure>
                                             </a>
                                             <div class="ps-product__actions">

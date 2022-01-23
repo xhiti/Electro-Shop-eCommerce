@@ -63,8 +63,11 @@
                                 <div class="ps-product ps-product--list">
                                     <div class="ps-product__content">
                                         <div class="ps-product__thumbnail"><a class="ps-product__image" href="{{ product.get_url }}">
-                                                <figure><img src="{{ product.image.url }}" alt="alt" />
+                                                {% if product.image %}
+                                                <figure>
+                                                    <img src="{{ product.image.url }}" alt="alt" />
                                                 </figure>
+                                                {% endif %}
                                             </a>
                                             <div class="ps-product__actions">
                                                 <div class="ps-product__item" data-placement="left" title="Quick view"><a href="{{ product.get_url }}"><i class="fa fa-search"></i></a></div>

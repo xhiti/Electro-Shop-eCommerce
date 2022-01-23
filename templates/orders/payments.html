@@ -93,7 +93,9 @@
                                                     <tr>
                                                         <td class="ps-product__thumbnail">
                                                             <a class="ps-product__image" href="{{ cart_item.product.get_url }}">
+                                                                {% if product.image %}
                                                                 <figure><img src="{{ cart_item.product.image.url }}" alt></figure>
+                                                                {% endif %}
                                                             </a>
                                                         </td>
                                                         <td class="ps-product__name">

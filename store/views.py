@@ -146,18 +146,3 @@ def product_xml_report(request):
     }
     return HttpResponse(template.render(context))
 
-
-def delete_category(request, pk):
-    return
-
-
-def edit_category(request, pk):
-    return
-
-
-def edit_product(request, pk):
-    return
-
-
-def delete_product(request, pk):
-    return

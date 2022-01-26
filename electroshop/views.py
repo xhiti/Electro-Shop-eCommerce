@@ -163,7 +163,7 @@ def admin_add_product(request):
         if stock is None or stock == "":
             messages.error(request, "Product stock can't be blank!")
         else:
-            stock = int(price)
+            stock = int(stock)
             print("Product Stock: " + str(stock))
 
         decription = request.POST['description']
@@ -210,6 +210,9 @@ def admin_edit_product(request, product_slug=None):
     }
 
     current_slug = product_details.slug
+    current_category = product_details.category.category_name
+    print("Current Category: " + str(current_category))
+
 
     if request.method == 'POST':
         product_name = request.POST['product_name']
@@ -233,13 +236,15 @@ def admin_edit_product(request, product_slug=None):
             messages.error(request, "Category can't be blank!")
         else:
             category_name = category_name
+            new_category = get_object_or_404(Category, id=category_name)
             print("Category ID: " + str(category_name))
+            print("Category Name: " + str(new_category.category_name))
 
         stock = request.POST['stock']
         if stock is None or stock == "":
             messages.error(request, "Product stock can't be blank!")
         else:
-            stock = int(price)
+            stock = int(stock)
             print("Product Stock: " + str(stock))
 
         decription = request.POST['description']
